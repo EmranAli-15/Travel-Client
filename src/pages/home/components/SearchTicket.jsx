@@ -30,51 +30,87 @@ const SearchTicket = () => {
                     </li>
                 </ul>
             </div>
-            <div className='mt-1 bg-white p-2 border-b-2'>
+            <div className='mt-1 bg-white p-2 lg:border-b-2'>
                 <div className={`${toggle === 1 ? 'block' : 'hidden'}`}>
-                    <div className='flex items-center'>
-                        <div>
+                    <form className='home-searchTicket-responsive items-center justify-between'>
+                        
+                        <div className='home-searchTicket'>
                             <p>Destination From</p>
-                            <select className='w-[160px] outline-none text-xl'>
-                                <option>English</option>
-                                <option>Japanese</option>
-                                <option>Italian</option>
+                            <select className='lg:w-[160px]'>
+                                <option value="" hidden>Please Select</option>
+                                <option>Chittagong</option>
+                                <option>Sylhet</option>
+                                <option>Bandorban</option>
                             </select>
                         </div>
-                        <hr className='h-[2px] border-[#313541] w-[40px] rotate-90'/>
-                        <div>
-                            <p>Destination To</p>
-                            <select className='w-[160px] outline-none text-xl pb-4'>
-                                <option>English</option>
-                                <option>Japanese</option>
-                                <option>Italian</option>
-                            </select>
+
+
+                        <div className='flex'>
+                            <hr className='home-ticket-hr' />
+                            <div className='home-searchTicket'>
+                                <p>Destination To</p>
+                                <select className='w-[160px]'>
+                                    <option value="" hidden>Please Select</option>
+                                    <option>Chittagong</option>
+                                    <option>Sylhet</option>
+                                    <option>Bandorban</option>
+                                </select>
+                            </div>
                         </div>
-                        <hr className='h-[2px] border-[#313541] w-[40px] rotate-90'/>
-                        <div>
-                            <p>Destination To</p>
-                            <select className='w-[160px] outline-none text-xl pb-4'>
-                                <option>English</option>
-                                <option>Japanese</option>
-                                <option>Italian</option>
-                            </select>
+
+
+                        <div className='flex'>
+                            <hr className='home-ticket-hr' />
+                            <div className='home-searchTicket'>
+                                <p>Journey Date</p>
+                                <input className='cursor-pointer outline-none' type="date" name="" id="" />
+                            </div>
                         </div>
-                        <hr className='h-[2px] border-[#313541] w-[40px] rotate-90'/>
-                        <div>
-                            <p>Destination To</p>
-                            <select className='w-[160px] outline-none text-xl pb-4'>
-                                <option>English</option>
-                                <option>Japanese</option>
-                                <option>Italian</option>
-                            </select>
+
+
+                        <div className='flex'>
+                            <hr className='home-ticket-hr' />
+                            <div className='home-searchTicket'>
+                                <p>Guests</p>
+                                <select className='w-[160px]'>
+                                    <option value="" hidden>Please Select</option>
+                                    <option>1 Person</option>
+                                    <option>2 Persons</option>
+                                    <option>3 Persons</option>
+                                    <option>4 Persons</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
+
+
+                        <div className='flex'>
+                            <hr className='home-ticket-hr' />
+                            <div className='home-searchTicket'>
+                                <p>Class</p>
+                                <select className='w-[160px]'>
+                                    <option value="" hidden>Please Select</option>
+                                    <option>Economy</option>
+                                    <option>Business</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div className='flex'>
+                            <hr className='home-ticket-hr mt-[13px]' />
+                            <div className='home-searchTicket flex justify-center'>
+                                <button className='allBtn'>
+                                    <input className='cursor-pointer' type="submit" value="SEARCH" />
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                
-                
-                
-                
-                
+
+
+
+
+
                 <div className={`${toggle === 2 ? 'block' : 'hidden'}`}>
                     jahangir
                 </div>

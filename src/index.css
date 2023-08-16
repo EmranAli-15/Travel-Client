@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.text-gray {
+    color: #808080c5;
+}
+
+
+.allBtn {
+    color: white;
+    font-weight: 400;
+    overflow: hidden;
+    display: flex;
+    padding: 8px 20px;
+    align-items: center;
+    column-gap: 5px;
+    position: relative;
+    background-color: #1db9f7f5;
+    /* background-color: #1ab79d; */
+    z-index: 1;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.allBtn::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 100%;
+    background-image: linear-gradient(90deg, #1db9f7f5 0%, #ebf2f5f5 100%);
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.5s;
+}
+
+.allBtn:hover:before {
+    width: 100%;
+}

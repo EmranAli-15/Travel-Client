@@ -9,7 +9,7 @@ const Banner = () => {
             <div>
                 <img className='w-full' src={homeBg} alt="" />
             </div>
-            <div className='absolute bottom-0 transform left-1/2 -translate-x-1/2'>
+            <div className='lg:absolute lg:bottom-0 lg:transform lg:left-1/2 lg:-translate-x-1/2'>
                 <SearchTicket></SearchTicket>
             </div>
         </div>
