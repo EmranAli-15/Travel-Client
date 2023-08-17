@@ -23,7 +23,6 @@ const SearchTicket = () => {
 
         const ticketData = { from, to, date, guests, classType };
         console.log(ticketData);
-
     }
 
     const handleHotelTicket = (event) => {
@@ -37,6 +36,20 @@ const SearchTicket = () => {
         const rooms = form.rooms.value;
 
         const ticketData = { place, dateStart, dateEnd, guests, rooms };
+        console.log(ticketData);
+    }
+
+    const handleCarTicket = (event) => {
+        event.preventDefault();
+        const form = event.target;
+
+        const from = form.from.value;
+        const to = form.to.value;
+        const dateStart = form.dateStart.value;
+        const dateEnd = form.dateEnd.value;
+        const sits = form.sits.value;
+
+        const ticketData = { from, to, dateStart, dateEnd, sits };
         console.log(ticketData);
     }
 
@@ -61,7 +74,6 @@ const SearchTicket = () => {
             </div>
             <div className='mt-1 bg-white p-2 lg:border-b-2'>
                 <div className={`${toggle === 1 ? 'block' : 'hidden'}`}>
-
 
                     <form onSubmit={handleFlightTicket} className='home-searchTicket-responsive items-center justify-between'>
 
@@ -138,12 +150,10 @@ const SearchTicket = () => {
 
                     </form>
 
-
                 </div>
 
 
                 <div className={`${toggle === 2 ? 'block' : 'hidden'}`}>
-
 
                     <form onSubmit={handleHotelTicket} className='home-searchTicket-responsive items-center justify-between'>
 
@@ -215,13 +225,12 @@ const SearchTicket = () => {
 
                     </form>
 
-
                 </div>
 
 
                 <div className={`${toggle === 3 ? 'block' : 'hidden'}`}>
 
-                    <form onSubmit={handleFlightTicket} className='home-searchTicket-responsive items-center justify-between'>
+                    <form onSubmit={handleCarTicket} className='home-searchTicket-responsive items-center justify-between'>
 
                         <div className='home-searchTicket'>
                             <p>Destination From</p>
@@ -252,7 +261,7 @@ const SearchTicket = () => {
                             <hr className='home-ticket-hr' />
                             <div className='home-searchTicket'>
                                 <p>Journey Date</p>
-                                <input name="date" className='cursor-pointer outline-none' type="date" required />
+                                <input name="dateStart" className='cursor-pointer outline-none' type="date" required />
                             </div>
                         </div>
 
@@ -260,14 +269,8 @@ const SearchTicket = () => {
                         <div className='flex'>
                             <hr className='home-ticket-hr' />
                             <div className='home-searchTicket'>
-                                <p>Guests</p>
-                                <select name="guests" className='w-[160px]' required>
-                                    <option value="" hidden>Please Select</option>
-                                    <option>1 Person</option>
-                                    <option>2 Persons</option>
-                                    <option>3 Persons</option>
-                                    <option>4 Persons</option>
-                                </select>
+                                <p>End Date</p>
+                                <input name="dateEnd" className='cursor-pointer outline-none' type="date" required />
                             </div>
                         </div>
 
@@ -275,11 +278,11 @@ const SearchTicket = () => {
                         <div className='flex'>
                             <hr className='home-ticket-hr' />
                             <div className='home-searchTicket'>
-                                <p>Class</p>
-                                <select name="class" className='w-[160px]' required>
+                                <p>Sits</p>
+                                <select name="sits" className='w-[160px]' required>
                                     <option value="" hidden>Please Select</option>
-                                    <option>Economy</option>
-                                    <option>Business</option>
+                                    <option>2 Sit</option>
+                                    <option>4 Sit</option>
                                 </select>
                             </div>
                         </div>
@@ -295,7 +298,6 @@ const SearchTicket = () => {
                         </div>
 
                     </form>
-
 
                 </div>
             </div>
