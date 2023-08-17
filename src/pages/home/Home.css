@@ -109,4 +109,8 @@
     .home-ticket-hr{
         display: none;
     }
+    .home-searchTicket{
+        width: 100%;
+        margin: 10px 0;
+    }
 }
