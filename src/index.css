@@ -6,7 +6,23 @@
     color: #808080c5;
 }
 
+.heading{
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    color: #1db9f7f5;
+}
 
+
+
+
+
+
+/*******************************
+-------------------------------
+COMMON BUTTON FOR ENTIRE PAGE
+------------------------------- 
+*******************************/
 .allBtn {
     color: white;
     font-weight: 400;
@@ -17,7 +33,6 @@
     column-gap: 5px;
     position: relative;
     background-color: #1db9f7f5;
-    /* background-color: #1ab79d; */
     z-index: 1;
     border-radius: 5px;
     cursor: pointer;
