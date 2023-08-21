@@ -1,8 +1,6 @@
-/*******************************
---------------------------------
- SEARCH TICKET SECTION STYLES 
---------------------------------
-********************************/
+/*********************************************
+<------- SEARCH TICKET SECTION STYLES ------->
+*********************************************/
 .home-listStyle {
     position: relative;
     cursor: pointer;
@@ -24,12 +22,12 @@
     transition: all .5s ease;
     width: 0%;
     height: 2px;
-    background-color: #1db9f7f5;
+    background-color: #1ab79d;
     color: gray;
 }
 
 .home-activeStyle {
-    color: #1db9f7f5;
+    color: #1ab79d;
 }
 
 .home-activeStyle::after {
@@ -40,7 +38,7 @@
     transition: all .5s ease;
     width: 100%;
     height: 2px;
-    background-color: #1db9f7f5;
+    background-color: #1ab79d;
 }
 
 .home-searchTicket p {
@@ -73,11 +71,10 @@
 
 
 
-/******************************
--------------------------------
-POPULAR PLACE SLIDER RELATED STYLES
-------------------------------- 
-******************************/
+
+/****************************************************
+<------- POPULAR PLACE SLIDER RELATED STYLES ------->
+****************************************************/
 .popular-place {
     width: 100%;
     height: 100%;
@@ -99,22 +96,156 @@ POPULAR PLACE SLIDER RELATED STYLES
 }
 
 .popular-place-card {
-    box-shadow: 0 6px #1db9f7f5;
+    box-shadow: 0 6px #1ab79d;
     background-color: #ebf2f5f5;
 }
 
-.popular-place-card:hover img{
+.popular-place-card:hover img {
     scale: 120%;
     overflow: hidden;
     transition: 500ms;
 }
-.popular-place-card .divided-line{
+
+.popular-place-card .divided-line {
     margin-top: 20px;
     width: 100%;
     height: 4px;
     border-radius: 50px;
-    background-image: linear-gradient(to right, #1db9f7f5, rgb(133, 248, 133), green);
+    background-image: linear-gradient(to right, #1ab79d, rgb(133, 248, 133), green);
 }
+
+
+
+
+
+
+
+
+/*******************************************
+<------- WHY WE BEST RELATED STYLES ------->
+********************************************/
+.bg-img {
+    width: 100%;
+    height: 60px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.why-best-container {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.why-best-one .bg-img {
+    background-image: url('../../assets/home/why1.png');
+}
+
+.why-best-one:hover .bg-img {
+    background-image: url('../../assets/home/why1_hover.png');
+}
+
+.why-best-two .bg-img {
+    background-image: url('../../assets/home/why2.png');
+}
+
+.why-best-two:hover .bg-img {
+    background-image: url('../../assets/home/why2_hover.png');
+}
+
+.why-best-three .bg-img {
+    background-image: url('../../assets/home/why3.png');
+}
+
+.why-best-three:hover .bg-img {
+    background-image: url('../../assets/home/why3_hover.png');
+}
+
+.why-best-four .bg-img {
+    background-image: url('../../assets/home/why4.png');
+}
+
+.why-best-four:hover .bg-img {
+    background-image: url('../../assets/home/why4_hover.png');
+}
+
+
+
+
+
+
+
+
+
+
+/***********************************************
+<------- HAPPY CUSTOMERS RELATED STYLES ------->
+************************************************/
+.skills {
+    width: 100%;
+    max-width: 600px;
+    padding: 0 20px;
+}
+
+.skill-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: peru;
+    text-transform: uppercase;
+    margin: 20px 0;
+}
+
+.skill-bar {
+    height: 14px;
+    background: #282828;
+    border-radius: 3px;
+}
+
+.skill-percentage {
+    height: 14px;
+    background: #d13639;
+    border-radius: 3px;
+    position: relative;
+}
+
+.animate .skill-percentage {
+    animation: fillBars 2.5s 1;
+}
+
+.skill-percentage::before {
+    content: attr(per);
+    position: absolute;
+    padding: 4px 6px;
+    background: blueviolet;
+    border-radius: 4px;
+    font-size: 12px;
+    top: -35px;
+    right: 0;
+    transform: translateX(50%);
+}
+
+.skill-percentage::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: blueviolet;
+    top: -15px;
+    right: 0;
+    transform: translateX(50%) rotate(45deg);
+    border-radius: 2px;
+}
+
+@keyframes fillBars {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
 
 
 
@@ -123,6 +254,8 @@ POPULAR PLACE SLIDER RELATED STYLES
 
 /* FOR MOBILE DEVICE */
 @media screen and (max-width:540px) {
+
+    /* ticket section */
     .home-searchTicket select {
         width: 100%;
         padding: 0% 15px;
@@ -150,11 +283,22 @@ POPULAR PLACE SLIDER RELATED STYLES
     .home-searchTicket-responsive {
         grid-template-columns: 1fr;
     }
+
+
+
+
+    /* why we best */
+    .why-best-container {
+        grid-template-columns: repeat(1, 1fr);
+        row-gap: 20px;
+    }
 }
 
 
 /* FOR TABLET */
 @media screen and (min-width: 541px) and (max-width:1000px) {
+
+    /* ticket section */
     .home-searchTicket-responsive {
         grid-template-columns: repeat(2, 1fr);
         padding: 0 50px;
@@ -167,5 +311,14 @@ POPULAR PLACE SLIDER RELATED STYLES
     .home-searchTicket {
         width: 100%;
         margin: 10px 0;
+    }
+
+
+
+
+    /* why we best */
+    .why-best-container {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 20px;
     }
 }

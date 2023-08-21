@@ -10,7 +10,7 @@
     font-size: 40px;
     font-weight: bold;
     text-align: center;
-    color: #1db9f7f5;
+    color: #1ab79d;
 }
 
 
@@ -18,11 +18,9 @@
 
 
 
-/*******************************
--------------------------------
-COMMON BUTTON FOR ENTIRE PAGE
-------------------------------- 
-*******************************/
+/*********************************************
+<------- COMMON BUTTON FOR ENTIRE PAGE ------>
+*********************************************/
 .allBtn {
     color: white;
     font-weight: 400;
@@ -32,7 +30,7 @@ COMMON BUTTON FOR ENTIRE PAGE
     align-items: center;
     column-gap: 5px;
     position: relative;
-    background-color: #1db9f7f5;
+    background-color: #1ab79d;
     z-index: 1;
     border-radius: 5px;
     cursor: pointer;
@@ -43,7 +41,7 @@ COMMON BUTTON FOR ENTIRE PAGE
     position: absolute;
     width: 0;
     height: 100%;
-    background-image: linear-gradient(90deg, #1db9f7f5 0%, #ebf2f5f5 100%);
+    background-image: linear-gradient(90deg, #1ab79d 0%, #31b978 100%);
     top: 0;
     left: 0;
     z-index: -1;
