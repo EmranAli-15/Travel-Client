@@ -6,7 +6,7 @@ import HappyCustomers from './components/HappyCustomers';
 
 const Home = () => {
     return (
-        <div className='mb-[500px]'>
+        <div>
             <Banner></Banner>
 
             <div className='max-w-7xl mx-auto'>
