@@ -12,8 +12,8 @@ const Home = () => {
             <div className='max-w-7xl mx-auto'>
                 <PopularPlace></PopularPlace>
                 <WhyBest></WhyBest>
-                <HappyCustomers></HappyCustomers>
             </div>
+            <HappyCustomers></HappyCustomers>
 
         </div>
     );

@@ -1,14 +1,5 @@
 import React from 'react';
 import '../Home.css'
-import why1 from '../../../assets/home/why1.png'
-import why2 from '../../../assets/home/why2.png'
-import why3 from '../../../assets/home/why3.png'
-import why4 from '../../../assets/home/why4.png'
-
-import why_hover1 from '../../../assets/home/why1_hover.png'
-import why_hover2 from '../../../assets/home/why2_hover.png'
-import why_hover3 from '../../../assets/home/why3_hover.png'
-import why_hover4 from '../../../assets/home/why4_hover.png'
 
 const WhyBest = () => {
     return (

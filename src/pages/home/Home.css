@@ -103,7 +103,7 @@
 .popular-place-card:hover img {
     scale: 120%;
     overflow: hidden;
-    transition: 500ms;
+    transition: 0.7s;
 }
 
 .popular-place-card .divided-line {
@@ -190,20 +190,20 @@
 .skill-name {
     font-size: 18px;
     font-weight: 700;
-    color: peru;
+    color: #ee4962;
     text-transform: uppercase;
-    margin: 20px 0;
+    margin: 30px 0 5px 0;
 }
 
 .skill-bar {
-    height: 14px;
+    height: 10px;
     background: #282828;
     border-radius: 3px;
 }
 
 .skill-percentage {
-    height: 14px;
-    background: #d13639;
+    height: 10px;
+    background: #1ab79d;
     border-radius: 3px;
     position: relative;
 }
@@ -216,7 +216,8 @@
     content: attr(per);
     position: absolute;
     padding: 4px 6px;
-    background: blueviolet;
+    background: #1ab79d;
+    color: white;
     border-radius: 4px;
     font-size: 12px;
     top: -35px;
@@ -229,7 +230,7 @@
     position: absolute;
     width: 10px;
     height: 10px;
-    background: blueviolet;
+    background: #1ab79d;
     top: -15px;
     right: 0;
     transform: translateX(50%) rotate(45deg);
@@ -244,6 +245,14 @@
     to {
         width: 100%;
     }
+}
+
+.happy-client-bg {
+    background-image: url(../../assets/home/world-map.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #393c46;
+    background-blend-mode: multiply;
 }
 
 
