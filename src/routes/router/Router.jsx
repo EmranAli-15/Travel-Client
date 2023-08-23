@@ -2,6 +2,7 @@ import React from 'react';
 import { createBrowserRouter } from "react-router-dom";
 import Prime from '../../layout/Prime';
 import Home from '../../pages/home/Home';
+import TicketCards from '../../pages/ticketCards/TicketCards';
 
 const router = createBrowserRouter([
     {
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>
+            },
+            {
+                path: "/ticketCards",
+                element: <TicketCards></TicketCards>
             }
         ]
     },
