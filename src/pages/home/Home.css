@@ -103,7 +103,7 @@
 .popular-place-card:hover img {
     scale: 120%;
     overflow: hidden;
-    transition: 0.7s;
+    transition: all 0.5s ease-in-out; 
 }
 
 .popular-place-card .divided-line {

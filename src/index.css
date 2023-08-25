@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.text-pink {
+    color: #ee4962;
+}
+
 .text-gray {
     color: #808080c5;
 }
