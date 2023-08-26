@@ -5,6 +5,7 @@ import Home from '../../pages/home/Home';
 import TicketCards from '../../pages/ticketCards/TicketCards';
 import Login from '../../pages/login/Login';
 import Register from '../../pages/register/Register';
+import TicketSlip from '../../pages/dashboard/ticketSlip/TicketSlip';
 
 const router = createBrowserRouter([
     {
@@ -26,7 +27,11 @@ const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register></Register>
-            }
+            },
+            {
+                path: "/ticketSlip",
+                element: <TicketSlip></TicketSlip>
+            },
         ]
     },
 ]);

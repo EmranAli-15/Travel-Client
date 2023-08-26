@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap');
+
+
+
+.ticketSlipBg{
+    background-image: url('../../../assets/dashboard/ticketSlip-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.ticketSlipFont{
+    font-family: 'Amatic SC', cursive;
+    font-weight: 500;
+}
+
+.ticketSlipUser{
+    font-size: 23px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
