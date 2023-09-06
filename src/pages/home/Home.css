@@ -1,6 +1,8 @@
 /*********************************************
 <------- SEARCH TICKET SECTION STYLES ------->
 *********************************************/
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
 .home-listStyle {
     position: relative;
     cursor: pointer;
@@ -43,6 +45,7 @@
 
 .home-searchTicket p {
     color: #808080c5;
+    font-family: 'Source Code Pro', monospace;
 }
 
 .home-searchTicket-responsive {
@@ -55,6 +58,11 @@
     cursor: pointer;
     outline: none;
     width: 160px;
+    font-family: 'Source Code Pro', monospace;
+}
+
+.home-searchTicket .input-date {
+    font-family: 'Source Code Pro', monospace;
 }
 
 .home-ticket-hr {
@@ -63,6 +71,26 @@
     height: 1px;
     rotate: 90deg;
     background-color: #808080c5;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background-image: url(../../assets/home/why1_hover.png);
+    color: #333;
+    font-size: 23px;
+    cursor: pointer;
+}
+select[type="option"]::-webkit-select-picker-indicator {
+    background-image: url(../../assets/home/why1_hover.png);
+    color: #333;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.hotel-date input[type="date"]::-webkit-calendar-picker-indicator {
+    background-image: url(../../assets/home/hotels_hover.png);
+    color: #333;
+    font-size: 23px;
+    cursor: pointer;
 }
 
 
@@ -103,7 +131,7 @@
 .popular-place-card:hover img {
     scale: 120%;
     overflow: hidden;
-    transition: all 0.5s ease-in-out; 
+    transition: all 0.5s ease-in-out;
 }
 
 .popular-place-card .divided-line {
