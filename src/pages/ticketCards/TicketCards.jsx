@@ -58,7 +58,7 @@ const TicketCards = () => {
 
 
     return (
-        <div className='my-[300px] max-w-[1400px] mx-auto'>
+        <div className='my-[300px] max-w-[1200px] mx-auto'>
             <Cards tickets={tickets}></Cards>
         </div>
     );
