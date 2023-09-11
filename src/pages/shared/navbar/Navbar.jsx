@@ -1,8 +1,12 @@
 import React from 'react';
 import logo from '../../../assets/home/logo.png'
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+
+    const { user, loading } = useSelector(state => state.auth);
+
     return (
         <div className='hidden md:block'>
             <div className="flex items-center justify-between navbar bg-base-100">
@@ -13,6 +17,12 @@ const Navbar = () => {
                 </div>
                 <div>
                     central
+                </div>
+                <div>
+                    {user ? user.email : 'haray gechi'}
+                </div>
+                <div>
+                    {loading ? 'loading...' : ''}
                 </div>
                 <div className="flex-none">
                     <div className="dropdown dropdown-end">
