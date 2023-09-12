@@ -3,12 +3,12 @@ import { BsFillTagFill, BsPlusSquare, BsSearch } from "react-icons/bs";
 import { LiaMinusSquare, LiaPlusSquare } from "react-icons/lia";
 import { HiOutlineUsers } from "react-icons/hi";
 
-const SideCard = () => {
+const FlightSideCard = () => {
     const [show, setShow] = useState(false);
     const [count, setCount] = useState(0);
 
     return (
-        <div className='w-[80%] mx-auto md:mx-0 relative'>
+        <div className='w-[80%] mx-auto lg:mx-0 relative'>
             <div className='flex gap-x-2 justify-center text-blue-500 items-center w-full p-2 bg-blue-100'>
                 <BsFillTagFill></BsFillTagFill>
                 We price match
@@ -69,4 +69,4 @@ const SideCard = () => {
     );
 };
 
-export default SideCard;
+export default FlightSideCard;

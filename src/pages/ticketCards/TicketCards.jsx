@@ -1,11 +1,16 @@
 import React from 'react';
 import Cards from './components/Cards';
+import departImg from '../../assets/home/depart.png'
+import returnImg from '../../assets/home/return.png'
 
 const TicketCards = () => {
 
     const tickets = [
         {
-            img: "https://www.travelandexplorebd.com/storage/app/public/posts/October2019/dreamstime_xxl_55742473.jpg",
+            departAgency: departImg,
+            returnAgency: returnImg,
+            departAgencyName: "arab airlines",
+            returnAgencyName: "USA airlines",
             from: "DHA",
             to: "COX'S",
             tk: 700,
@@ -15,7 +20,10 @@ const TicketCards = () => {
             availableSits: 15,
         },
         {
-            img: "https://www.travelandexplorebd.com/storage/app/public/posts/October2019/dreamstime_xxl_55742473.jpg",
+            departAgency: departImg,
+            returnAgency: returnImg,
+            departAgencyName: "arab airlines",
+            returnAgencyName: "USA airlines",
             from: "DHA",
             to: "RANG",
             tk: 500,
@@ -25,7 +33,10 @@ const TicketCards = () => {
             availableSits: 25,
         },
         {
-            img: "https://www.travelandexplorebd.com/storage/app/public/posts/October2019/dreamstime_xxl_55742473.jpg",
+            departAgency: departImg,
+            returnAgency: returnImg,
+            departAgencyName: "arab airlines",
+            returnAgencyName: "USA airlines",
             from: "DHA",
             to: "COX'S",
             tk: 500,
@@ -35,7 +46,10 @@ const TicketCards = () => {
             availableSits: 25,
         },
         {
-            img: "https://www.travelandexplorebd.com/storage/app/public/posts/October2019/dreamstime_xxl_55742473.jpg",
+            departAgency: departImg,
+            returnAgency: returnImg,
+            departAgencyName: "arab airlines",
+            returnAgencyName: "USA airlines",
             from: "DHA",
             to: "COX'S",
             tk: 500,
@@ -45,7 +59,10 @@ const TicketCards = () => {
             availableSits: 25,
         },
         {
-            img: "https://www.travelandexplorebd.com/storage/app/public/posts/October2019/dreamstime_xxl_55742473.jpg",
+            departAgency: departImg,
+            returnAgency: returnImg,
+            departAgencyName: "arab airlines",
+            returnAgencyName: "USA airlines",
             from: "DHA",
             to: "COX'S",
             tk: 500,
