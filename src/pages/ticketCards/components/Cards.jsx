@@ -18,7 +18,7 @@ const Cards = ({ tickets }) => {
 
                 {
                     tickets.map((ticket, index) => {
-                        const { departAgency, departAgencyName, returnAgency, returnAgencyName, from, to, tk, place, hour, distance, availableSits } = ticket
+                        const { departAgency, departAgencyName, returnAgency, returnAgencyName, from, to, tk, place, hour, distance } = ticket
                         return (
                             <div key={index} className="w-full">
                                 <div className='md:flex items-center bg-[#ebf2f5f5] hover:border-b-[4px] hover:border-b-[#1ab79d] duration-300 border border-b-[4px] border-b-transparent rounded-md'>
@@ -36,8 +36,10 @@ const Cards = ({ tickets }) => {
                                                         <span className='h-2 w-2 border border-black/50'></span>
                                                         <span className='h-[2px] w-16 bg-black/50'></span>
                                                     </div>
-                                                    <div>
-                                                        <p className='text-xs text-gray-500'>{hour} h</p>
+                                                    <div className='text-xs text-gray-500 flex items-center gap-x-1'>
+                                                        <p>{distance} km.</p>
+                                                        <p>-</p>
+                                                        <p>{hour} h</p>
                                                     </div>
                                                 </div>
                                                 <p>{to}</p>
@@ -49,25 +51,27 @@ const Cards = ({ tickets }) => {
                                                 <p className='text-[14px] text-gray-500'>{returnAgencyName}</p>
                                             </div>
                                             <div className='flex items-center gap-x-3'>
-                                                <p>{from}</p>
+                                                <p>{to}</p>
                                                 <div className='flex flex-col items-center mt-4'>
                                                     <div className='flex items-center gap-x-2'>
                                                         <span className='h-[2px] w-16 bg-black/50'></span>
                                                         <span className='h-2 w-2 border border-black/50'></span>
                                                         <span className='h-[2px] w-16 bg-black/50'></span>
                                                     </div>
-                                                    <div>
-                                                        <p className='text-xs text-gray-500'>{hour} h</p>
+                                                    <div className='text-xs text-gray-500 flex items-center gap-x-1'>
+                                                        <p>{distance} km.</p>
+                                                        <p>-</p>
+                                                        <p>{hour} h</p>
                                                     </div>
                                                 </div>
-                                                <p>{to}</p>
+                                                <p>{from}</p>
                                             </div>
                                         </div>
 
                                         <div className='flex items-center justify-between px-4 text-xs text-gray-500'>
                                             <div className='flex items-center gap-x-2'>
-                                                <p>{departAgencyName},</p>
                                                 <p>{returnAgencyName}</p>
+                                                <p>{departAgencyName},</p>
                                             </div>
                                             <div className='flex items-center gap-x-3'>
                                                 <p className='text-black'>TK {tk + 200} Bravofly</p>

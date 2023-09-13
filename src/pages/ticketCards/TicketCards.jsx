@@ -30,7 +30,6 @@ const TicketCards = () => {
             place: "Rangga Mati",
             hour: 4.5,
             distance: 100,
-            availableSits: 25,
         },
         {
             departAgency: departImg,
@@ -43,7 +42,6 @@ const TicketCards = () => {
             place: "Cox's Bazar",
             hour: 4.5,
             distance: 100,
-            availableSits: 25,
         },
         {
             departAgency: departImg,
@@ -56,7 +54,6 @@ const TicketCards = () => {
             place: "Cox's Bazar",
             hour: 4.5,
             distance: 100,
-            availableSits: 25,
         },
         {
             departAgency: departImg,
@@ -69,7 +66,6 @@ const TicketCards = () => {
             place: "Cox's Bazar",
             hour: 4.5,
             distance: 100,
-            availableSits: 25,
         },
     ]
 

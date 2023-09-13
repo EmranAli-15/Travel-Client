@@ -7,9 +7,12 @@ import Login from '../../pages/login/Login';
 import Register from '../../pages/register/Register';
 import TicketSlip from '../../pages/dashboard/ticketSlip/TicketSlip';
 import Blogs from '../../pages/blogs/Blogs';
+import Dashboard from '../../layout/Dashboard';
+import FlightTicket from '../../pages/dashboard/admin/FlightTicket';
 
 const router = createBrowserRouter([
     {
+        // regular route path
         path: "/",
         element: <Prime></Prime>,
         children: [
@@ -39,6 +42,14 @@ const router = createBrowserRouter([
             },
         ]
     },
+    {
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [{
+            path: "/dashboard/flightTicket",
+            element: <FlightTicket></FlightTicket>
+        }]
+    }
 ]);
 
 export default router;
