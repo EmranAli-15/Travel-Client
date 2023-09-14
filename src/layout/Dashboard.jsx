@@ -20,15 +20,15 @@ const Dashboard = () => {
                     </div>
                     <div className="drawer-side">
                         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                        <ul className="p-4 w-64 min-h-[calc(90vh)] bg-blue-100 text-base-content relative">
+                        <ul className="p-4 mt-2 w-64 min-h-[calc(90vh)] bg-slate-100 text-base-content relative">
                             {
                                 admin ?
                                     <div>
-                                        <li className='bg-green-300 px-2 py-1'>
-                                            <NavLink to="/dashboard/flightTicket" className={({ isActive }) => (isActive ? 'font-serif text-white' : '')}>Publish Flight Ticket</NavLink>
+                                        <li>
+                                            <NavLink to="/dashboard/flightTicket" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>Publish Flight Ticket</NavLink>
                                         </li>
-                                        <li className='mt-4 bg-green-300 px-2 py-1'>
-                                            <NavLink to="/dashboard/hotelTicket" className={({ isActive }) => (isActive ? 'font-serif text-white' : '')}>Publish Flight Hotel</NavLink>
+                                        <li className='mt-4'>
+                                            <NavLink to="/dashboard/hotelTicket" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>Publish Flight Hotel</NavLink>
                                         </li>
                                     </div> :
                                     <>

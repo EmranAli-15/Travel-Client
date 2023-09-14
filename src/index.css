@@ -10,7 +10,7 @@
     color: #808080c5;
 }
 
-.heading{
+.heading {
     font-size: 40px;
     font-weight: bold;
     text-align: center;
@@ -53,4 +53,18 @@
 
 .allBtn:hover:before {
     width: 100%;
+}
+
+
+.activeNav {
+    background-image: linear-gradient(90deg, #1ab79d 0%, #31b978 100%);
+    color: azure;
+    font-weight: 600;
+    padding: 3px 15px;
+    border-radius: 3px;
+}
+
+.deActiveNav {
+    font-weight: 600;
+    padding: 3px 15px;
 }

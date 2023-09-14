@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaEyeSlash, FaUserAlt, FaEye } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { auth, signInWithEmailAndPassword } from '../../features/auth/firebase'
 import loginImg from '../../assets/authentication/loginImg.png'
 
@@ -10,16 +10,18 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
+
     const handleLogin = (event) => {
         event.preventDefault();
 
         console.log(email, password);
         signInWithEmailAndPassword(auth, email, password)
             .then(result => {
-                console.log(result.user)
+                navigate('/')
             })
             .catch(error => {
-                console.log(error);
+                
             })
     }
 
