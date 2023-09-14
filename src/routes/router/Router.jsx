@@ -9,6 +9,7 @@ import TicketSlip from '../../pages/dashboard/ticketSlip/TicketSlip';
 import Blogs from '../../pages/blogs/Blogs';
 import Dashboard from '../../layout/Dashboard';
 import FlightTicket from '../../pages/dashboard/admin/FlightTicket';
+import HotelTicket from '../../pages/dashboard/admin/HotelTicket';
 
 const router = createBrowserRouter([
     {
@@ -45,10 +46,16 @@ const router = createBrowserRouter([
     {
         path: "/dashboard",
         element: <Dashboard></Dashboard>,
-        children: [{
-            path: "/dashboard/flightTicket",
-            element: <FlightTicket></FlightTicket>
-        }]
+        children: [
+            {
+                path: "/dashboard/flightTicket",
+                element: <FlightTicket></FlightTicket>
+            },
+            {
+                path: "/dashboard/hotelTicket",
+                element: <HotelTicket></HotelTicket>
+            },
+        ]
     }
 ]);
 

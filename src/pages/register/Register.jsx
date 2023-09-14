@@ -3,9 +3,9 @@ import { FaEyeSlash, FaUserAlt, FaEye } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 import signUpImg from '../../assets/authentication/signupImg.png'
-import { auth, createUserWithEmailAndPassword, signOut, signInWithEmailAndPassword } from '../../features/auth/firebase';
-import { useDispatch, useSelector } from 'react-redux';
-import { login, logout, loading } from '../../features/auth/authSlice';
+import { auth, createUserWithEmailAndPassword } from '../../features/auth/firebase';
+import { useDispatch } from 'react-redux';
+import { login } from '../../features/auth/authSlice';
 
 const Register = () => {
     const [toggle, setToggle] = useState(false);
@@ -15,39 +15,22 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [error, setError] = useState('');
 
-    // const { user } = useSelector(state => state.auth);
 
     const handleCreateUser = (event) => {
         event.preventDefault();
+        setError('');
+        if (password !== confirmPassword) {
+            return setError('Password not matched');
+        }
+
 
         createUserWithEmailAndPassword(auth, email, password)
             .then(result => {
                 dispatch(login({
                     email: result.user.email
                 }))
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-
-    const handleLogout = () => {
-        signOut(auth)
-            .then(result => {
-                dispatch(logout());
-            })
-            .catch(error => { })
-    }
-
-    const handleLogin = () => {
-        dispatch(loading(true))
-        signInWithEmailAndPassword(auth, email, password)
-            .then(result => {
-                dispatch(login({
-                    email: email
-                }))
-                dispatch(loading(false))
             })
             .catch(error => {
                 console.log(error)
@@ -63,15 +46,17 @@ const Register = () => {
                     <div className="w-full md:w-1/2">
                         <img src={signUpImg} alt="" />
                     </div>
-                    <div className="w-full md:w-1/2 px-6 py-4 md:mt-6 border-b-[5px] border-b-[#4ed8c1] overflow-hidden bg-white shadow-2xl  sm:max-w-lg sm:rounded-lg relative">
-                        <FaUserAlt className="my-8 mx-auto text-6xl text-[#4ed8c1]"></FaUserAlt>
+                    <div className="w-full md:w-[35%] px-6 py-4 md:mt-6 border-b-[5px] border-b-[#4ed8c1] overflow-hidden bg-white shadow-2xl  sm:max-w-lg sm:rounded-lg relative">
+                        <FaUserAlt className="mt-8 mb-3 mx-auto text-6xl text-[#4ed8c1]"></FaUserAlt>
+                        <p className='text-center mb-10 text-red-500 text-[14px]'>{error}</p>
                         <form onSubmit={handleCreateUser}>
                             <div className="relative z-0 w-full mb-6 mt-4 group">
                                 <input
                                     type="text"
+                                    id="floating_email"
                                     className="block py-2.5 pl-4 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#1ab79d] focus:outline-none focus:ring-0 focus:border-[#1ab79d] peer"
+                                    placeholder=" "
                                     required
-                                    value={name}
                                     onChange={e => setName(e.target.value)}
                                 />
                                 <label
@@ -81,13 +66,14 @@ const Register = () => {
                                     Your Name*
                                 </label>
                             </div>
+
                             <div className="relative z-0 w-full mb-6 mt-4 group">
                                 <input
                                     type="email"
                                     id="floating_email"
                                     className="block py-2.5 pl-4 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#1ab79d] focus:outline-none focus:ring-0 focus:border-[#1ab79d] peer"
+                                    placeholder=" "
                                     required
-                                    value={email}
                                     onChange={e => setEmail(e.target.value)}
                                 />
                                 <label
@@ -97,36 +83,40 @@ const Register = () => {
                                     Your Email*
                                 </label>
                             </div>
-                            <div className="relative z-0 w-full mb-6 group">
+
+
+                            <div className="relative z-0 w-full mb-6 mt-4 group">
                                 <input
                                     type={`${toggle ? 'text' : 'password'}`}
-                                    id="floating_password"
+                                    id="floating_email"
                                     className="block py-2.5 pl-4 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#1ab79d] focus:outline-none focus:ring-0 focus:border-[#1ab79d] peer"
+                                    placeholder=" "
                                     required
-                                    value={password}
                                     onChange={e => setPassword(e.target.value)}
                                 />
                                 <label
-                                    htmlFor="floating_password"
+                                    htmlFor="floating_email"
                                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#1ab79d] peer-focus:dark:text-[#1ab79d] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                                 >
-                                    Password*
+                                    Your Password*
                                 </label>
                             </div>
-                            <div className="relative z-0 w-full mb-6 group">
+
+
+                            <div className="relative z-0 w-full mb-6 mt-4 group">
                                 <input
                                     type={`${toggle ? 'text' : 'password'}`}
-                                    id="floating_password"
+                                    id="floating_email"
                                     className="block py-2.5 pl-4 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-[#1ab79d] focus:outline-none focus:ring-0 focus:border-[#1ab79d] peer"
+                                    placeholder=" "
                                     required
-                                    value={confirmPassword}
                                     onChange={e => setConfirmPassword(e.target.value)}
                                 />
                                 <label
-                                    htmlFor="floating_password"
+                                    htmlFor="floating_email"
                                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-[#1ab79d] peer-focus:dark:text-[#1ab79d] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                                 >
-                                    Confirm Password*
+                                    Repeat Password*
                                 </label>
                             </div>
                             <button className="flex items-center w-full mt-4">
@@ -156,15 +146,6 @@ const Register = () => {
                                 toggle ? <FaEye size={20}></FaEye> :
                                     <FaEyeSlash className='text-gray' size={20}></FaEyeSlash>
                             }
-                        </div>
-
-                        <div className='flex gap-x-10'>
-                            <button onClick={handleLogout}>
-                                logOut
-                            </button>
-                            <button onClick={handleLogin}>
-                                login
-                            </button>
                         </div>
                     </div>
                 </div>

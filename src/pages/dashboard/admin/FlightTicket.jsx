@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import uploadImg from '../../../assets/dashboard/uploadImg.png'
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { storage } from '../../../firebase/firebase.config';
+import { usePublishFlightTicketMutation } from '../../../features/flight/flightApi';
 
 const imgToken = import.meta.env.VITE_IMAGE_TOKEN;
 
 const FlightTicket = () => {
     const image_hosting_url = `https://api.imgbb.com/1/upload?key=${imgToken}`
+    const [publishFlightTicket, { isLoading }] = usePublishFlightTicketMutation();
 
     const [distance, setDistance] = useState('');
     const [hour, setHour] = useState('');
@@ -14,8 +14,56 @@ const FlightTicket = () => {
     const [returnAgencyName, setReturnAgencyName] = useState('');
     const [departAgencyLogo, setDepartAgencyLogo] = useState('');
     const [returnAgencyLogo, setReturnAgencyLogo] = useState('');
+    const [fromShort, setFromShort] = useState('');
+    const [toShort, setToShort] = useState('');
+    const [departLogoName, setDepartLogoName] = useState('');
+    const [returnLogoName, setReturnLogoName] = useState('');
+
     const [departError, setDepartError] = useState(null);
     const [returnError, setReturnError] = useState(null);
+
+    const [buttonDisable, setButtonDisable] = useState(false);
+
+    const acceptDepartLogo = (event) => {
+        setButtonDisable(true);
+        const file = event.target.files[0];
+        setDepartAgencyLogo(file);
+        setDepartLogoName(file.name.slice(0, 10));
+        const formData = new FormData();
+        formData.append('image', file);
+
+        fetch(image_hosting_url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgResponse => {
+                if (imgResponse.success) {
+                    setDepartAgencyLogo(imgResponse.data.display_url);
+                    setButtonDisable(false);
+                }
+            })
+    }
+    const acceptReturnLogo = (event) => {
+        setButtonDisable(true);
+        const file = event.target.files[0];
+        setReturnAgencyLogo(file);
+        setReturnLogoName(file.name.slice(0, 10));
+        const formData = new FormData();
+        formData.append('image', file);
+
+        fetch(image_hosting_url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgResponse => {
+                if (imgResponse.success) {
+                    setReturnAgencyLogo(imgResponse.data.display_url);
+                    setButtonDisable(false);
+                }
+            })
+    }
 
 
 
@@ -25,97 +73,35 @@ const FlightTicket = () => {
 
         const from = event.target.from.value;
         const to = event.target.to.value;
-        // if (departError === '') {
-        //     return setDepartError('Need a Logo')
-        // };
-        // if (returnAgencyLogo === '') {
-        //     return setReturnError('Need a Logo')
-        // };
+        if (departAgencyLogo === '') {
+            return setDepartError('Need a Logo')
+        };
+        if (returnAgencyLogo === '') {
+            return setReturnError('Need a Logo')
+        };
 
-        // console.log(
-        //     from,
-        //     to,
-        //     fromShort,
-        //     toShort,
-        //     distance,
-        //     hour,
-        //     departAgencyName,
-        //     returnAgencyName,
-        //     departAgencyLogo,
-        //     returnAgencyLogo
-        // )
+        const data = {
+            from,
+            to,
+            fromShort,
+            toShort,
+            distance,
+            hour,
+            departAgencyName,
+            returnAgencyName,
+            departAgencyLogo,
+            returnAgencyLogo
+        }
+
+        publishFlightTicket(data);
     }
-
-    const [files, setFiles] = useState([]);
-    const [urls, setUrls] = useState([]);
-    const [percent, setPercent] = useState(0);
-
-    // Handle file upload event and update state
-    function handleChange(event) {
-        const selectedFiles = event.target.files;
-        setFiles([...files, ...selectedFiles]);
-    }
-
-    const handleUpload = async () => {
-        if (files.length === 0) {
-            alert("Please upload one or more images first!");
-            return;
-        }
-
-        // Create an array to store the promises for getting download URLs
-        const urlPromises = [];
-
-        for (const file of files) {
-            const storageRef = ref(storage, `/files/${file.name}`);
-            const uploadTask = uploadBytesResumable(storageRef, file);
-
-            // Create a promise for getting the download URL
-            const urlPromise = new Promise((resolve, reject) => {
-                uploadTask.on(
-                    'state_changed',
-                    (snapshot) => {
-                        const percent = Math.round(
-                            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                        );
-                        setPercent(percent);
-                    },
-
-                    (err) => {
-                        console.log(err);
-                        reject(err);
-                    },
-
-                    async () => {
-                        try {
-                            const url = await getDownloadURL(uploadTask.snapshot.ref);
-                            resolve(url);
-                        } catch (error) {
-                            console.error(error);
-                            reject(error);
-                        }
-                    }
-                );
-            });
-
-            urlPromises.push(urlPromise);
-        }
-
-        // Wait for all promises to resolve and collect the URLs
-        try {
-            const downloadUrls = await Promise.all(urlPromises);
-            setUrls(downloadUrls);
-            console.log("Download URLs:", downloadUrls);
-        } catch (error) {
-            console.error("Error getting download URLs:", error);
-        }
-    };
 
 
 
     return (
         <div>
             <form onSubmit={handlePublish}>
-                <div className='md:flex justify-center gap-x-4 items-center'>
+                <div className='md:flex justify-center gap-x-4 items-center md:mt-4'>
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
                             <span className="label-text">Starting Place</span>
@@ -124,9 +110,9 @@ const FlightTicket = () => {
                             required
                             name="from"
                             className="select select-success w-full max-w-xs">
-                            <option selected>Dhaka</option>
-                            <option>Chittagong</option>
-                            <option>Bandorban</option>
+                            <option value="dhaka">Dhaka</option>
+                            <option value="chittagong">Chittagong</option>
+                            <option value="bandorban">Bandorban</option>
                         </select>
                     </div>
 
@@ -138,15 +124,15 @@ const FlightTicket = () => {
                             required
                             name="to"
                             className="select select-success w-full max-w-xs">
-                            <option selected>Chittagong</option>
-                            <option>Dhaka</option>
-                            <option>Bandorban</option>
+                            <option value="chittagong">Chittagong</option>
+                            <option value="dhaka">Dhaka</option>
+                            <option value="bandorban">Bandorban</option>
                         </select>
                     </div>
                 </div>
 
 
-                <div className='md:flex justify-center gap-x-4 items-center'>
+                <div className='md:flex justify-center gap-x-4 items-center md:mt-4'>
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
                             <span className="label-text">Starting Place Short Name</span>
@@ -173,7 +159,7 @@ const FlightTicket = () => {
                 </div>
 
 
-                <div className='md:flex justify-center gap-x-4 items-center'>
+                <div className='md:flex justify-center gap-x-4 items-center md:mt-4'>
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
                             <span className="label-text">Distance</span>
@@ -202,7 +188,7 @@ const FlightTicket = () => {
                 </div>
 
 
-                <div className='md:flex justify-center gap-x-4 items-center'>
+                <div className='md:flex justify-center gap-x-4 items-center md:mt-4'>
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
                             <span className="label-text">Depart Agency Name</span>
@@ -231,7 +217,7 @@ const FlightTicket = () => {
                 </div>
 
 
-                <div className='md:flex justify-center gap-x-4 items-center'>
+                <div className='md:flex justify-center gap-x-4 items-center md:mt-4'>
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
                             <span className="label-text">Depart Agency Logo</span>
@@ -240,47 +226,38 @@ const FlightTicket = () => {
                             <br />
                             <img className='h-[80px]' src={uploadImg} alt="" />
                             <input
-                                onChange={e => setDepartAgencyLogo(e.target.files[0])}
+                                onChange={acceptDepartLogo}
                                 id="inputTag"
                                 type="file"
                                 className='hidden' />
                         </label>
-                        {departAgencyLogo ? '' : <p className="text-red-500 text-xs text-center">{returnError}</p>}
+                        {departAgencyLogo ? <p className="text-green-600 text-xs text-center">{departLogoName}</p> : <p className="text-red-500 text-xs text-center">{departError}</p>}
                     </div>
 
                     <div className="form-control w-full max-w-xs">
                         <label className="label">
-                            <span className="label-text">Return Agency Logo</span>
+                            <span className="label-text flex">Return Agency Logo</span>
                         </label>
                         <label className='flex justify-center cursor-pointer -mt-6' htmlFor="inputTagTwo">
                             <br />
                             <img className='h-[80px]' src={uploadImg} alt="" />
                             <input
-                                onChange={e => setReturnAgencyLogo(e.target.files[0])}
+                                onChange={acceptReturnLogo}
                                 id="inputTagTwo"
                                 type="file"
                                 className='hidden' />
                         </label>
-                        {returnAgencyLogo ? '' : <p className="text-red-500 text-xs text-center">{returnError}</p>}
+                        {returnAgencyLogo ? <p className="text-green-600 text-xs text-center">{returnLogoName}</p> : <p className="text-red-500 text-xs text-center">{returnError}</p>}
                     </div>
                 </div>
 
 
                 <div>
-                    <button type="submit" className='mt-10 allBtn w-full flex justify-center'>
+                    <button disabled={buttonDisable} type="submit" className={`${buttonDisable ? 'cursor-not-allowed' : 'cursor-pointer'} mt-10 allBtn w-full flex justify-center`}>
                         Publish You Ticket
                     </button>
                 </div>
             </form>
-
-
-
-
-            <div>
-                <input type="file" onChange={handleChange} multiple />
-                <button onClick={handleUpload}>Upload to Firebase</button>
-                {/* <p>{percent} "% done"</p> */}
-            </div>
         </div>
     );
 };

@@ -7,20 +7,28 @@ import { RouterProvider, useNavigate } from "react-router-dom";
 import { auth, onAuthStateChanged } from './features/auth/firebase'
 import { login, logout } from './features/auth/authSlice';
 import { useDispatch } from 'react-redux';
+import { useJwtMutation } from './features/auth/authApi';
 
 const App = () => {
   const dispatch = useDispatch();
+  const [jwt, { }] = useJwtMutation();
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+
       if (user) {
-        dispatch(login({
-          email: user.email
-        }));
-      } else {
-        
+        dispatch(login({ email: user.email }));
+        const email = user.email;
+        jwt({ email: email })
       }
-    });
+      else {
+        dispatch(logout());
+        localStorage.removeItem('access-token');
+      }
+    })
+    return () => {
+      return unsubscribe();
+    }
   }, [])
 
   return (
