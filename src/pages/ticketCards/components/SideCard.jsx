@@ -1,11 +1,37 @@
 import React, { useState } from 'react';
-import { BsFillTagFill, BsPlusSquare, BsSearch } from "react-icons/bs";
+import { BsFillTagFill, BsSearch } from "react-icons/bs";
 import { LiaMinusSquare, LiaPlusSquare } from "react-icons/lia";
 import { HiOutlineUsers } from "react-icons/hi";
+import { useDispatch } from 'react-redux';
+import { flightApi, useSearchFlightTicketsQuery } from '../../../features/flight/flightApi';
 
-const FlightSideCard = () => {
+// /searchFlightTickets
+
+const SideCard = () => {
+
     const [show, setShow] = useState(false);
-    const [count, setCount] = useState(0);
+
+    const [name, setName] = useState('');
+    const [checkIn, setCheckIn] = useState('');
+    const [checkOut, setCheckOut] = useState('');
+    const [count, setCount] = useState(1);
+
+    const [skip, setSkip] = useState(true)
+    const { data, error, isLoading, isSuccess, isError } = useSearchFlightTicketsQuery(
+        name, { skip }
+    )
+
+
+    const handleSearch = (event) => {
+        event.preventDefault();
+        if (name === '') {
+            return
+        }
+        setSkip(false);
+    }
+    if (isSuccess) {
+        setSkip(true);
+    }
 
     return (
         <div className='w-[80%] mx-auto lg:mx-0 relative'>
@@ -15,11 +41,14 @@ const FlightSideCard = () => {
             </div>
 
             <div className='mt-5 p-4 bg-[#febb02]'>
-                <form>
+                <form onSubmit={handleSearch}>
                     <div className='relative'>
                         <p className='text-xs'>Type your destination</p>
                         <BsSearch size={22} className='absolute top-6 right-2.5 text-[#1ab79d]'></BsSearch>
                         <input
+                            required
+                            onChange={e => setName(e.target.value)}
+                            value={name}
                             type="text"
                             className='w-full outline-none rounded-sm p-2'
                         />
@@ -27,6 +56,8 @@ const FlightSideCard = () => {
                     <div className='relative mt-3'>
                         <p className='text-xs'>Check-in-date</p>
                         <input
+                            onChange={e => setCheckIn(e.target.value)}
+                            value={checkIn}
                             type="date"
                             className='w-full outline-none rounded-sm p-2'
                         />
@@ -34,6 +65,8 @@ const FlightSideCard = () => {
                     <div className='relative mt-3'>
                         <p className='text-xs'>Check-out-date</p>
                         <input
+                            onChange={e => setCheckOut(e.target.value)}
+                            value={checkOut}
                             type="date"
                             className='w-full outline-none rounded-sm p-2'
                         />
@@ -55,7 +88,7 @@ const FlightSideCard = () => {
                 <div className='bg-white h-14 flex items-center justify-between'>
                     <p className='text-lg font-semibold ml-4'>Sits :</p>
                     <div className='flex items-center gap-x-4 mr-4'>
-                        <button disabled={count <= 0} onClick={() => setCount(count - 1)}>
+                        <button className={count <= 1 && 'cursor-not-allowed'} disabled={count <= 1} onClick={() => setCount(count - 1)}>
                             <LiaMinusSquare size={30}></LiaMinusSquare>
                         </button>
                         <span className='text-lg font-semibold'>{count}</span>
@@ -69,4 +102,4 @@ const FlightSideCard = () => {
     );
 };
 
-export default FlightSideCard;
+export default SideCard;

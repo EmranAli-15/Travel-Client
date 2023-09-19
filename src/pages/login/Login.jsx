@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { FaEyeSlash, FaUserAlt, FaEye } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth, signInWithEmailAndPassword } from '../../features/auth/firebase'
+import { auth, signInWithEmailAndPassword, signOut } from '../../features/auth/firebase'
 import loginImg from '../../assets/authentication/loginImg.png'
+import { Button } from 'flowbite-react';
 
 const Login = () => {
 
@@ -15,14 +16,19 @@ const Login = () => {
     const handleLogin = (event) => {
         event.preventDefault();
 
-        console.log(email, password);
         signInWithEmailAndPassword(auth, email, password)
             .then(result => {
                 navigate('/')
             })
             .catch(error => {
-                
+
             })
+    }
+
+    const handleLogOut = () => {
+        signOut(auth)
+            .then(result => console.log(result))
+            .catch(error => console.log(error))
     }
 
     return (
@@ -106,6 +112,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+            <Button onClick={handleLogOut}>LogOut</Button>
         </div>
     );
 };

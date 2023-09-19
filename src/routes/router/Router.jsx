@@ -2,7 +2,7 @@ import React from 'react';
 import { createBrowserRouter } from "react-router-dom";
 import Prime from '../../layout/Prime';
 import Home from '../../pages/home/Home';
-import TicketCards from '../../pages/ticketCards/TicketCards';
+import FlightTickets from '../../pages/ticketCards/FlightTickets';
 import Login from '../../pages/login/Login';
 import Register from '../../pages/register/Register';
 import TicketSlip from '../../pages/dashboard/ticketSlip/TicketSlip';
@@ -10,6 +10,10 @@ import Blogs from '../../pages/blogs/Blogs';
 import Dashboard from '../../layout/Dashboard';
 import FlightTicket from '../../pages/dashboard/admin/FlightTicket';
 import HotelTicket from '../../pages/dashboard/admin/HotelTicket';
+import BlogsLayout from '../../layout/BlogsLayout';
+import UploadBlog from '../../pages/blogs/UploadBlog';
+import SingleBlog from '../../pages/blogs/SingleBlog'
+import BlogsLoader from '../../ui/BlogsLoader';
 
 const router = createBrowserRouter([
     {
@@ -22,8 +26,8 @@ const router = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path: "/ticketCards",
-                element: <TicketCards></TicketCards>
+                path: "/flightTickets/:from/:to",
+                element: <FlightTickets></FlightTickets>
             },
             {
                 path: "/login",
@@ -38,11 +42,13 @@ const router = createBrowserRouter([
                 element: <TicketSlip></TicketSlip>
             },
             {
-                path: "/blogs",
-                element: <Blogs></Blogs>
-            },
+                path: "/uploadBlog",
+                element: <UploadBlog></UploadBlog>
+            }
         ]
     },
+
+    // dashboard related routes
     {
         path: "/dashboard",
         element: <Dashboard></Dashboard>,
@@ -56,7 +62,28 @@ const router = createBrowserRouter([
                 element: <HotelTicket></HotelTicket>
             },
         ]
-    }
+    },
+
+    // blogs related routes
+    {
+        path: "/blogs",
+        element: <BlogsLayout></BlogsLayout>,
+        children: [
+            {
+                path: "/blogs",
+                element: <Blogs></Blogs>
+            },
+            {
+                path: "/blogs/singleBlog/:id",
+                element: <SingleBlog></SingleBlog>
+            },
+            {
+                path: "/blogs/loader",
+                element: <BlogsLoader></BlogsLoader>
+            },
+        ]
+    },
+
 ]);
 
 export default router;

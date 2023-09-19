@@ -1,25 +1,16 @@
 import React from 'react';
 import logo from '../../../assets/home/logo.png'
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { auth, signOut } from '../../../features/auth/firebase'
 import { BsPersonCircle } from "react-icons/bs";
-import { LiaSignOutAltSolid } from "react-icons/lia";
+import { BiLogIn } from "react-icons/bi";
 import { FaBlog } from 'react-icons/fa';
+import { MdOutlineScreenShare } from "react-icons/md";
 
 const Navbar = () => {
 
     const { user } = useSelector(state => state.auth);
-
-    const handleLogOut = () => {
-        signOut(auth)
-            .then(result => {
-                console.log(result)
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
 
     return (
         <div className="navbar bg-slate-100">
@@ -53,11 +44,17 @@ const Navbar = () => {
                 </div>
             </div>
             <div className="navbar-end mr-5">
+                <Link to="/uploadBlog" className='flex items-center gap-x-1 mr-10'>
+                    <div>
+                        <MdOutlineScreenShare size={30}></MdOutlineScreenShare>
+                    </div>
+                    <h1 className='text-xl'>Share Your Blog</h1>
+                </Link>
                 <div>
                     {
                         user ?
                             <Link to="/dashboard"> <BsPersonCircle className='text-[#1ab79d]' size={30}></BsPersonCircle> </Link> :
-                            <Link to="/login"> <BsPersonCircle className='text-[#1ab79d]' size={30}></BsPersonCircle> </Link>
+                            <Link to="/login"> <BiLogIn className='text-[#1ab79d]' size={30}></BiLogIn> </Link>
                     }
                 </div>
             </div>

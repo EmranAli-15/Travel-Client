@@ -28,9 +28,13 @@ const Register = () => {
 
         createUserWithEmailAndPassword(auth, email, password)
             .then(result => {
-                dispatch(login({
-                    email: result.user.email
-                }))
+                dispatch(login(
+                    {
+                        email: result.email,
+                        displayName: result.displayName,
+                        photoURL: result.photoURL
+                    }
+                ))
             })
             .catch(error => {
                 console.log(error)

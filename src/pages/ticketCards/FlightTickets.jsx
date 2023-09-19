@@ -1,35 +1,57 @@
-import React from 'react';
-import '../TicketCards.css'
+import React, { useEffect } from 'react';
+import SideCard from './components/SideCard';
+import { useParams } from 'react-router-dom';
+import { useGetFlightTicketsMutation } from '../../features/flight/flightApi';
+import { useSelector } from 'react-redux';
 
-import { Link } from 'react-router-dom';
-import FlightSideCard from './FlightSideCard'
-import { BsDashLg } from 'react-icons/bs';
+const FlightTickets = () => {
 
+    const { flightTickets } = useSelector(state => state.crud)
 
-const Cards = ({ tickets }) => {
+    const { from, to } = useParams();
 
+    const [getFlightTickets, { }] = useGetFlightTicketsMutation();
+
+    useEffect(() => {
+        getFlightTickets({ from, to })
+    }, [getFlightTickets])
 
     return (
-        <div className='lg:flex'>
-            <div className='lg:w-[40%] mb-5'>
-                <FlightSideCard></FlightSideCard>
+        <div className='md:flex max-w-[1200px] mx-auto my-20 gap-x-10'>
+            <div className='md:w-[40%]'>
+                <SideCard></SideCard>
             </div>
-            <div className='grid gap-y-4 lg:w-[60%]'>
+
+            <div className='grid gap-y-1 md:w-[60%]'>
 
                 {
-                    tickets.map((ticket, index) => {
-                        const { departAgency, departAgencyName, returnAgency, returnAgencyName, from, to, tk, place, hour, distance } = ticket
+                    flightTickets.map((ticket, index) => {
+                        const
+                            {
+                                from,
+                                to,
+                                fromShort,
+                                toShort,
+                                distance,
+                                hour,
+                                price,
+                                departAgencyName,
+                                returnAgencyName,
+                                departAgencyLogo,
+                                returnAgencyLogo
+                            } = ticket
                         return (
                             <div key={index} className="w-full">
                                 <div className='md:flex items-center bg-[#ebf2f5f5] hover:border-b-[4px] hover:border-b-[#1ab79d] duration-300 border border-b-[4px] border-b-transparent rounded-md'>
-                                    <div className='md:w-[75%] py-2'>
+                                    <div className='md:w-[75%] py-5'>
+
                                         <div className='flex gap-x-10 px-4 py-2'>
-                                            <div>
-                                                <img className='h-[30px] w-[30px]' src={departAgency} alt={place} />
+                                            <div className='w-[70px]'>
+                                                <img className='h-[30px] w-[30px]' src={departAgencyLogo} alt={to} />
                                                 <p className='text-[14px] text-gray-500'>{departAgencyName}</p>
                                             </div>
                                             <div className='flex items-center gap-x-3'>
-                                                <p>{from}</p>
+                                                <p>{fromShort}</p>
                                                 <div className='flex flex-col items-center mt-4'>
                                                     <div className='flex items-center gap-x-2'>
                                                         <span className='h-[2px] w-16 bg-black/50'></span>
@@ -42,16 +64,16 @@ const Cards = ({ tickets }) => {
                                                         <p>{hour} h</p>
                                                     </div>
                                                 </div>
-                                                <p>{to}</p>
+                                                <p>{toShort}</p>
                                             </div>
                                         </div>
                                         <div className='flex gap-x-10 px-4'>
-                                            <div>
-                                                <img className='h-[30px] w-[30px]' src={returnAgency} alt={place} />
+                                            <div className='w-[70px]'>
+                                                <img className='h-[30px] w-[30px]' src={returnAgencyLogo} alt={from} />
                                                 <p className='text-[14px] text-gray-500'>{returnAgencyName}</p>
                                             </div>
                                             <div className='flex items-center gap-x-3'>
-                                                <p>{to}</p>
+                                                <p>{toShort}</p>
                                                 <div className='flex flex-col items-center mt-4'>
                                                     <div className='flex items-center gap-x-2'>
                                                         <span className='h-[2px] w-16 bg-black/50'></span>
@@ -64,18 +86,18 @@ const Cards = ({ tickets }) => {
                                                         <p>{hour} h</p>
                                                     </div>
                                                 </div>
-                                                <p>{from}</p>
+                                                <p>{fromShort}</p>
                                             </div>
                                         </div>
 
-                                        <div className='flex items-center justify-between px-4 text-xs text-gray-500'>
+                                        <div className='flex items-center justify-between px-4 pt-2 text-xs text-gray-500'>
                                             <div className='flex items-center gap-x-2'>
-                                                <p>{returnAgencyName}</p>
-                                                <p>{departAgencyName},</p>
+                                                <p>{returnAgencyName},</p>
+                                                <p>{departAgencyName}</p>
                                             </div>
                                             <div className='flex items-center gap-x-3'>
-                                                <p className='text-black'>TK {tk + 200} Bravofly</p>
-                                                <p className='text-blue-500'>TK {tk + 300} Opodo</p>
+                                                <p className='text-black'>TK {price + 200} Bravofly</p>
+                                                <p className='text-blue-500'>TK {price + 300} Opodo</p>
                                                 <p>+5 more</p>
                                             </div>
                                         </div>
@@ -84,7 +106,7 @@ const Cards = ({ tickets }) => {
 
                                     <div className='md:w-[25%] flex justify-between'>
                                         <div className='mr-3 w-full flex md:flex-col gap-x-5 justify-center items-center text-right md:border-l border-l-black/40 pl-2'>
-                                            <h1 className='md:text-lg text-orange-600 md:font-serif font-bold'>TK, {tk}</h1>
+                                            <h1 className='md:text-lg text-orange-600 md:font-serif font-bold'>TK, {price}</h1>
                                             <button className='allBtn mt-3'>
                                                 Book now
                                             </button>
@@ -102,4 +124,4 @@ const Cards = ({ tickets }) => {
     );
 };
 
-export default Cards;
+export default FlightTickets;

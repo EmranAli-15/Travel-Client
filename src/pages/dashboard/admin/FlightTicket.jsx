@@ -8,8 +8,9 @@ const FlightTicket = () => {
     const image_hosting_url = `https://api.imgbb.com/1/upload?key=${imgToken}`
     const [publishFlightTicket, { isLoading }] = usePublishFlightTicketMutation();
 
-    const [distance, setDistance] = useState('');
-    const [hour, setHour] = useState('');
+    const [distanceStr, setDistance] = useState('');
+    const [hourStr, setHour] = useState('');
+    const [priceStr, setPrice] = useState('');
     const [departAgencyName, setDepartAgencyName] = useState('');
     const [returnAgencyName, setReturnAgencyName] = useState('');
     const [departAgencyLogo, setDepartAgencyLogo] = useState('');
@@ -73,6 +74,10 @@ const FlightTicket = () => {
 
         const from = event.target.from.value;
         const to = event.target.to.value;
+        const price = parseFloat(priceStr);
+        const distance = parseFloat(distanceStr);
+        const hour = parseFloat(hourStr)
+
         if (departAgencyLogo === '') {
             return setDepartError('Need a Logo')
         };
@@ -87,12 +92,13 @@ const FlightTicket = () => {
             toShort,
             distance,
             hour,
+            price,
             departAgencyName,
             returnAgencyName,
             departAgencyLogo,
             returnAgencyLogo
         }
-
+        console.log(data)
         publishFlightTicket(data);
     }
 
@@ -110,9 +116,9 @@ const FlightTicket = () => {
                             required
                             name="from"
                             className="select select-success w-full max-w-xs">
-                            <option value="dhaka">Dhaka</option>
-                            <option value="chittagong">Chittagong</option>
-                            <option value="bandorban">Bandorban</option>
+                            <option value="Dhaka">Dhaka</option>
+                            <option value="Chittagong">Chittagong</option>
+                            <option value="Bandorban">Bandorban</option>
                         </select>
                     </div>
 
@@ -124,9 +130,9 @@ const FlightTicket = () => {
                             required
                             name="to"
                             className="select select-success w-full max-w-xs">
-                            <option value="chittagong">Chittagong</option>
-                            <option value="dhaka">Dhaka</option>
-                            <option value="bandorban">Bandorban</option>
+                            <option value="Chittagong">Chittagong</option>
+                            <option value="Dhaka">Dhaka</option>
+                            <option value="Bandorban">Bandorban</option>
                         </select>
                     </div>
                 </div>
@@ -166,7 +172,7 @@ const FlightTicket = () => {
                         </label>
                         <input
                             required
-                            value={distance}
+                            value={distanceStr}
                             onChange={e => setDistance(e.target.value)}
                             type="number"
                             placeholder="300 km."
@@ -179,7 +185,7 @@ const FlightTicket = () => {
                         </label>
                         <input
                             required
-                            value={hour}
+                            value={hourStr}
                             onChange={e => setHour(e.target.value)}
                             type="number"
                             placeholder="7 hour"
@@ -212,6 +218,22 @@ const FlightTicket = () => {
                             onChange={e => setReturnAgencyName(e.target.value)}
                             type="text"
                             placeholder="Bangladesh Airlines"
+                            className="input input-bordered input-success w-full max-w-xs" />
+                    </div>
+                </div>
+
+
+                <div className='flex justify-center'>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            <span className="label-text">Price</span>
+                        </label>
+                        <input
+                            required
+                            value={priceStr}
+                            onChange={e => setPrice(e.target.value)}
+                            type="number"
+                            placeholder="5000 tk"
                             className="input input-bordered input-success w-full max-w-xs" />
                     </div>
                 </div>

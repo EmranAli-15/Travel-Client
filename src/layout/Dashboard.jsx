@@ -1,11 +1,26 @@
 import React from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import Navbar from '../pages/shared/navbar/Navbar';
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
+import { auth, signOut } from '../features/auth/firebase'
+import { useAdminSecureQuery } from '../features/auth/authApi';
+import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
+    const navigate = useNavigate();
 
-    const admin = true;
+    const { user, isAdmin, dashboardLoading } = useSelector(state => state.auth);
+    const { email } = user || {};
+    console.log(dashboardLoading)
+    useAdminSecureQuery(email)
+
+    const handleLogOut = () => {
+        signOut(auth)
+            .then(() => {
+                navigate('/');
+            })
+            .catch(() => { })
+    }
 
     return (
         <div>
@@ -20,32 +35,36 @@ const Dashboard = () => {
                     </div>
                     <div className="drawer-side">
                         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                        <ul className="p-4 mt-2 w-64 min-h-[calc(90vh)] bg-slate-100 text-base-content relative">
+                        <ul className="p-4 mt-2 w-64 min-h-[calc(80vh)] bg-slate-100 text-base-content relative">
                             {
-                                admin ?
-                                    <div>
-                                        <li>
-                                            <NavLink to="/dashboard/flightTicket" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>Publish Flight Ticket</NavLink>
-                                        </li>
-                                        <li className='mt-4'>
-                                            <NavLink to="/dashboard/hotelTicket" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>Publish Flight Hotel</NavLink>
-                                        </li>
-                                    </div> :
-                                    <>
-                                        <li>
-                                            <NavLink to="">My Tickets</NavLink>
-                                        </li>
-                                    </>
+                                isAdmin && !dashboardLoading &&
+                                <>
+                                    <li>
+                                        <NavLink to="/dashboard/flightTicket" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>Publish Flight Ticket</NavLink>
+                                    </li>
+                                    <li className='mt-4'>
+                                        <NavLink to="/dashboard/hotelTicket" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>Publish Flight Hotel</NavLink>
+                                    </li>
+                                </> ||
+                                !isAdmin && !dashboardLoading &&
+                                <>
+                                    <li>
+                                        <NavLink to="">My Tickets</NavLink>
+                                    </li>
+                                </> ||
+                                <>Loading</>
                             }
                             <div className='absolute bottom-2'>
                                 <div>
-                                    <button className='flex items-center gap-x-2 hover:pl-5 duration-300'>
-                                        <FaHome className='text-blue-500' size={25}></FaHome>
-                                        Home
-                                    </button>
+                                    <Link to="/">
+                                        <button className='flex items-center gap-x-2 hover:pl-5 duration-300'>
+                                            <FaHome className='text-blue-500' size={25}></FaHome>
+                                            Home
+                                        </button>
+                                    </Link>
                                 </div>
                                 <div className='mt-3'>
-                                    <button className='flex items-center gap-x-2 hover:pl-5 duration-300'>
+                                    <button onClick={handleLogOut} className='flex items-center gap-x-2 hover:pl-5 duration-300'>
                                         <FaSignOutAlt className='text-red-500' size={25}></FaSignOutAlt>
                                         Sign Out
                                     </button>

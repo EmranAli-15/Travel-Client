@@ -1,4 +1,5 @@
 import { apiSlice } from "../api/apiSlice";
+import { dashboardLoading, isAdmin, loading } from "./authSlice";
 
 export const authApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -13,12 +14,25 @@ export const authApi = apiSlice.injectEndpoints({
             async onQueryStarted(arg, { queryFulfilled, dispatch }) {
                 try {
                     const result = await queryFulfilled;
-                    console.log(result.data)
                     localStorage.setItem('access-token', (result.data.token))
+                } catch (err) { }
+            }
+        }),
+
+        adminSecure: builder.query({
+            query: (email) => ({
+                url: `/adminSecure/${email}`
+            }),
+
+            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+                try {
+                    const result = await queryFulfilled;
+                    const data = result.data;
+                    dispatch(isAdmin(data))
                 } catch (err) { }
             }
         })
     }),
 })
 
-export const { useJwtMutation } = authApi;
+export const { useJwtMutation, useAdminSecureQuery } = authApi;

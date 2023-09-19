@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './index.css'
 import router from './routes/router/Router.jsx';
 
-import { RouterProvider, useNavigate } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 
 import { auth, onAuthStateChanged } from './features/auth/firebase'
 import { login, logout } from './features/auth/authSlice';
@@ -17,7 +17,11 @@ const App = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
 
       if (user) {
-        dispatch(login({ email: user.email }));
+        dispatch(login({
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL
+        }));
         const email = user.email;
         jwt({ email: email })
       }
