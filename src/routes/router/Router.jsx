@@ -13,7 +13,6 @@ import HotelTicket from '../../pages/dashboard/admin/HotelTicket';
 import BlogsLayout from '../../layout/BlogsLayout';
 import UploadBlog from '../../pages/blogs/UploadBlog';
 import SingleBlog from '../../pages/blogs/SingleBlog'
-import BlogsLoader from '../../ui/BlogsLoader';
 import HotelTickets from '../../pages/ticketCards/HotelTickets';
 
 const router = createBrowserRouter([
@@ -31,7 +30,7 @@ const router = createBrowserRouter([
                 element: <FlightTickets></FlightTickets>
             },
             {
-                path: "/hotelTickets",
+                path: "/hotelTickets/:place",
                 element: <HotelTickets></HotelTickets>
             },
             {

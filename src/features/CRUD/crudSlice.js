@@ -12,9 +12,13 @@ const crudSlice = createSlice({
     reducers: {
         flightTickets: (state, action) => {
             state.flightTickets = action.payload
+        },
+
+        hotelTickets: (state, action) => {
+            state.hotelTickets = action.payload
         }
     },
 })
 
-export const { flightTickets } = crudSlice.actions;
+export const { flightTickets, hotelTickets } = crudSlice.actions;
 export default crudSlice.reducer;

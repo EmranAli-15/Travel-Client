@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { BsFillTagFill, BsSearch } from "react-icons/bs";
 import { LiaMinusSquare, LiaPlusSquare } from "react-icons/lia";
 import { HiOutlineUsers } from "react-icons/hi";
+import { useNavigate } from 'react-router-dom';
 
-// /searchFlightTickets
+// /searchHotelTickets
 
 const HotelSideCard = () => {
 
+    const navigate = useNavigate();
     const [show, setShow] = useState(false);
 
     const [name, setName] = useState('');
@@ -16,6 +18,11 @@ const HotelSideCard = () => {
 
 
     const handleSearch = (event) => {
+        event.preventDefault();
+        if (name === '') {
+            return;
+        }
+        navigate(`/hotelTickets/${name}`)
     }
 
     return (

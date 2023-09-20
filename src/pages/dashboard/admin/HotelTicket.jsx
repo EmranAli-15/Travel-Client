@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import uploadImg from '../../../assets/dashboard/uploadImg.png'
+import { usePublishHotelTicketMutation } from '../../../features/hotel/hotelApi';
 
 const imgToken = import.meta.env.VITE_IMAGE_TOKEN;
 
 const HotelTicket = () => {
     const image_hosting_url = `https://api.imgbb.com/1/upload?key=${imgToken}`
+    const [publishHotelTicket, { isLoading, isSuccess }] = usePublishHotelTicketMutation();
 
 
     const [hotel, setHotel] = useState('');
@@ -46,8 +48,16 @@ const HotelTicket = () => {
             return setPhotoError('Need a Photo')
         };
 
-        const data = {hotel, price, place, time, photo, fromCenter}
-        console.log(data)
+        const data = { hotel, price, place, time, photo, fromCenter }
+        publishHotelTicket(data)
+        if(isSuccess){
+            setHotel('');
+            setPhoto('');
+            setPrice('');
+            setPlace('');
+            setTime('');
+            setFormCenter('');
+        }
     }
 
 

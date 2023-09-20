@@ -1,7 +1,9 @@
 import React from 'react';
 import '../../Home.css'
+import { useNavigate } from 'react-router-dom';
 
 const Hotel = () => {
+    const navigate = useNavigate();
 
     const handleHotelTicket = (event) => {
         event.preventDefault();
@@ -15,6 +17,8 @@ const Hotel = () => {
 
         const ticketData = { place, dateStart, dateEnd, guests, rooms };
         console.log(ticketData);
+        navigate(`/hotelTickets/${place}`);
+
     }
 
     return (
@@ -25,8 +29,8 @@ const Hotel = () => {
                     <p>Place</p>
                     <select name="place" className='lg:w-[160px]' required>
                         <option value="" hidden>Please Select</option>
+                        <option>Dhaka</option>
                         <option>Chittagong</option>
-                        <option>Sylhet</option>
                         <option>Bandorban</option>
                     </select>
                 </div>
@@ -36,7 +40,7 @@ const Hotel = () => {
                     <hr className='home-ticket-hr' />
                     <div className='home-searchTicket'>
                         <p>Booking Date</p>
-                        <input name="dateStart" className='input-date outline-none' type="date" required />
+                        <input name="dateStart" className='input-date outline-none' type="date" />
                     </div>
                 </div>
 
@@ -45,7 +49,7 @@ const Hotel = () => {
                     <hr className='home-ticket-hr' />
                     <div className='home-searchTicket'>
                         <p>End Date</p>
-                        <input name="dateEnd" className='input-date outline-none' type="date" required />
+                        <input name="dateEnd" className='input-date outline-none' type="date" />
                     </div>
                 </div>
 
@@ -54,7 +58,7 @@ const Hotel = () => {
                     <hr className='home-ticket-hr' />
                     <div className='home-searchTicket'>
                         <p>Guests</p>
-                        <select name="guests" className='w-[160px]' required>
+                        <select name="guests" className='w-[160px]'>
                             <option value="" hidden>Please Select</option>
                             <option>1 Person</option>
                             <option>2 Persons</option>
@@ -69,7 +73,7 @@ const Hotel = () => {
                     <hr className='home-ticket-hr' />
                     <div className='home-searchTicket'>
                         <p>Rooms</p>
-                        <select name="rooms" className='w-[160px]' required>
+                        <select name="rooms" className='w-[160px]'>
                             <option value="" hidden>Please Select</option>
                             <option>Single</option>
                             <option>Double</option>
