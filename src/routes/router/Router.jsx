@@ -14,6 +14,7 @@ import BlogsLayout from '../../layout/BlogsLayout';
 import UploadBlog from '../../pages/blogs/UploadBlog';
 import SingleBlog from '../../pages/blogs/SingleBlog'
 import BlogsLoader from '../../ui/BlogsLoader';
+import HotelTickets from '../../pages/ticketCards/HotelTickets';
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
             {
                 path: "/flightTickets/:from/:to",
                 element: <FlightTickets></FlightTickets>
+            },
+            {
+                path: "/hotelTickets",
+                element: <HotelTickets></HotelTickets>
             },
             {
                 path: "/login",
@@ -76,10 +81,6 @@ const router = createBrowserRouter([
             {
                 path: "/blogs/singleBlog/:id",
                 element: <SingleBlog></SingleBlog>
-            },
-            {
-                path: "/blogs/loader",
-                element: <BlogsLoader></BlogsLoader>
             },
         ]
     },

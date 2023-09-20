@@ -14,12 +14,12 @@ const FlightTickets = () => {
 
     useEffect(() => {
         getFlightTickets({ from, to })
-    }, [getFlightTickets])
+    }, [getFlightTickets, from, to])
 
     return (
         <div className='md:flex max-w-[1200px] mx-auto my-20 gap-x-10'>
             <div className='md:w-[40%]'>
-                <SideCard></SideCard>
+                <SideCard from={from}></SideCard>
             </div>
 
             <div className='grid gap-y-1 md:w-[60%]'>
@@ -42,7 +42,7 @@ const FlightTickets = () => {
                             } = ticket
                         return (
                             <div key={index} className="w-full">
-                                <div className='md:flex items-center bg-[#ebf2f5f5] hover:border-b-[4px] hover:border-b-[#1ab79d] duration-300 border border-b-[4px] border-b-transparent rounded-md'>
+                                <div className='md:flex items-center p-2 border rounded-md'>
                                     <div className='md:w-[75%] py-5'>
 
                                         <div className='flex gap-x-10 px-4 py-2'>
@@ -91,12 +91,12 @@ const FlightTickets = () => {
                                         </div>
 
                                         <div className='flex items-center justify-between px-4 pt-2 text-xs text-gray-500'>
-                                            <div className='flex items-center gap-x-2'>
+                                            <div className='flex items-center gap-x-2 text-blue-600'>
                                                 <p>{returnAgencyName},</p>
                                                 <p>{departAgencyName}</p>
                                             </div>
                                             <div className='flex items-center gap-x-3'>
-                                                <p className='text-black'>TK {price + 200} Bravofly</p>
+                                                <p className='text-green-600'>TK {price + 200} Bravofly</p>
                                                 <p className='text-blue-500'>TK {price + 300} Opodo</p>
                                                 <p>+5 more</p>
                                             </div>
@@ -107,7 +107,7 @@ const FlightTickets = () => {
                                     <div className='md:w-[25%] flex justify-between'>
                                         <div className='mr-3 w-full flex md:flex-col gap-x-5 justify-center items-center text-right md:border-l border-l-black/40 pl-2'>
                                             <h1 className='md:text-lg text-orange-600 md:font-serif font-bold'>TK, {price}</h1>
-                                            <button className='allBtn mt-3'>
+                                            <button className='bg-blue-500 px-3 py-2 mt-3 text-white rounded-md'>
                                                 Book now
                                             </button>
                                         </div>

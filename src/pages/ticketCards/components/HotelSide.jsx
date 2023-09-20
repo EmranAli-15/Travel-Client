@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { BsFillTagFill, BsSearch } from "react-icons/bs";
 import { LiaMinusSquare, LiaPlusSquare } from "react-icons/lia";
 import { HiOutlineUsers } from "react-icons/hi";
-import { Link } from 'react-router-dom';
 
 // /searchFlightTickets
 
-const SideCard = ({ from }) => {
+const HotelSideCard = () => {
 
     const [show, setShow] = useState(false);
 
@@ -17,7 +16,6 @@ const SideCard = ({ from }) => {
 
 
     const handleSearch = (event) => {
-
     }
 
     return (
@@ -30,7 +28,7 @@ const SideCard = ({ from }) => {
             <div className='mt-5 p-4 bg-[#febb02]'>
                 <form onSubmit={handleSearch}>
                     <div className='relative'>
-                        <p className='text-xs'>Type your destination</p>
+                        <p className='text-xs'>Place Name</p>
                         <BsSearch size={22} className='absolute top-6 right-2.5 text-[#1ab79d]'></BsSearch>
                         <input
                             required
@@ -59,23 +57,21 @@ const SideCard = ({ from }) => {
                         />
                     </div>
                     <div className='relative mt-3'>
-                        <p className='text-xs'>Total sits</p>
+                        <p className='text-xs'>Total Person</p>
                         <div onClick={() => setShow(!show)} className='flex justify-between items-center rounded-sm p-2 h-[42px] cursor-pointer bg-white'>
                             {count} <span className='text-[#1ab79d]'><HiOutlineUsers size={23}></HiOutlineUsers></span>
                         </div>
                     </div>
                     <div >
-                        <Link to={`/flightTickets/${from}/${name}`}>
-                            <button className='allBtn flex justify-center w-full mt-3' type='submit'>
-                                Search
-                            </button>
-                        </Link>
+                        <button className='allBtn flex justify-center w-full mt-3' type='submit'>
+                            Search
+                        </button>
                     </div>
                 </form>
             </div>
             <div className={`${show ? 'block' : 'hidden'} absolute -bottom-2 right-0 p-4 w-full z-10`}>
                 <div className='bg-white h-14 flex items-center justify-between'>
-                    <p className='text-lg font-semibold ml-4'>Sits :</p>
+                    <p className='text-lg font-semibold ml-4'>Adults :</p>
                     <div className='flex items-center gap-x-4 mr-4'>
                         <button className={count <= 1 && 'cursor-not-allowed'} disabled={count <= 1} onClick={() => setCount(count - 1)}>
                             <LiaMinusSquare size={30}></LiaMinusSquare>
@@ -91,4 +87,4 @@ const SideCard = ({ from }) => {
     );
 };
 
-export default SideCard;
+export default HotelSideCard;

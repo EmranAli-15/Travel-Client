@@ -33,17 +33,8 @@ export const flightApi = apiSlice.injectEndpoints({
                 const data = result.data;
                 dispatch(flightTickets(data));
             }
-        }),
-
-        searchFlightTickets: builder.query({
-            query: (data) => `/searchFlightTickets/${data}`,
-            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-                const result = await queryFulfilled;
-                const data = result.data;
-                dispatch(flightTickets(data));
-            }
         })
     })
 })
 
-export const { usePublishFlightTicketMutation, useGetFlightTicketsMutation, useSearchFlightTicketsQuery } = flightApi;
+export const { usePublishFlightTicketMutation, useGetFlightTicketsMutation } = flightApi;
