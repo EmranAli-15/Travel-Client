@@ -24,6 +24,14 @@ const Navbar = () => {
                         {
                             user && <li className='mt-3'><NavLink to="/dashboard" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>Dashboard</NavLink></li>
                         }
+                        <li>
+                            <Link to="/uploadBlog" className='flex items-center pl-4 gap-x-2 mt-3 font-medium'>
+                                <div>
+                                    <MdOutlineScreenShare size={20}></MdOutlineScreenShare>
+                                </div>
+                                <h1>Share Your Blog</h1>
+                            </Link>
+                        </li>
                     </ul>
                 </div>
                 <Link to="/">
@@ -44,7 +52,7 @@ const Navbar = () => {
                 </div>
             </div>
             <div className="navbar-end mr-5">
-                <Link to="/uploadBlog" className='flex items-center gap-x-1 mr-10'>
+                <Link to="/uploadBlog" className='lg:flex items-center gap-x-1 mr-10 hidden'>
                     <div>
                         <MdOutlineScreenShare size={30}></MdOutlineScreenShare>
                     </div>

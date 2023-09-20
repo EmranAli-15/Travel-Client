@@ -16,6 +16,11 @@ const FlightTickets = () => {
         getFlightTickets({ from, to })
     }, [getFlightTickets, from, to])
 
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     return (
         <div className='md:flex max-w-[1200px] mx-auto my-20 gap-x-10'>
             <div className='md:w-[40%]'>

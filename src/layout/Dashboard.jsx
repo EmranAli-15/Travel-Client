@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import Navbar from '../pages/shared/navbar/Navbar';
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
+import { TiThMenu } from "react-icons/ti";
 import { auth, signOut } from '../features/auth/firebase'
 import { useAdminSecureQuery } from '../features/auth/authApi';
 import { useSelector } from 'react-redux';
@@ -29,8 +30,8 @@ const Dashboard = () => {
                 <div className="drawer lg:drawer-open">
                     <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                     <div className="drawer-content flex flex-col p-5">
+                        <label htmlFor="my-drawer-2" className="lg:hidden flex justify-end"><TiThMenu size={25}></TiThMenu></label>
                         <Outlet></Outlet>
-                        <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
                     </div>
                     <div className="drawer-side">

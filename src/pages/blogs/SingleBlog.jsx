@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetSingleBlogQuery } from '../../features/blog/blogApi';
 import SingleBlogLoader from '../../ui/SingleBlogLoader';
@@ -6,6 +6,10 @@ import SingleBlogLoader from '../../ui/SingleBlogLoader';
 const SingleBlog = () => {
     const { id } = useParams();
     const { data: singleBlog, isLoading, isSuccess } = useGetSingleBlogQuery(id);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [id]);
 
     // decide what to render
     let content = null;

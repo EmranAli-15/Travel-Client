@@ -44,6 +44,10 @@ const Blogs = () => {
                         {/* conditional images rendering */}
                         <Link to={`/blogs/singleBlog/${_id}`}>
                             {
+                                img.length === 0 &&
+                                <div className="flex gap-2 justify-center">
+                                    <p className='text-3xl font-bold text-gray-300 text-center'>No Photo Shared</p>
+                                </div> ||
                                 img.length === 1 &&
                                 <div className="flex gap-2 justify-center">
                                     <div>

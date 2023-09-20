@@ -66,9 +66,6 @@ const FlightTicket = () => {
             })
     }
 
-
-
-
     const handlePublish = (event) => {
         event.preventDefault();
 
@@ -98,8 +95,16 @@ const FlightTicket = () => {
             departAgencyLogo,
             returnAgencyLogo
         }
-        console.log(data)
         publishFlightTicket(data);
+        setPrice('');
+        setHour('');
+        setDistance('');
+        setFromShort('');
+        setToShort('');
+        setReturnAgencyName('');
+        setDepartAgencyName('');
+        returnLogoName('');
+        departLogoName('');
     }
 
 

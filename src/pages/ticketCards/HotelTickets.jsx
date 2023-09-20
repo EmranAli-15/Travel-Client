@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import HotelSideCard from './components/HotelSide';
 import { BsWifi } from 'react-icons/bs';
 import { TbAirConditioningDisabled } from "react-icons/tb";
@@ -11,6 +11,10 @@ const HotelTickets = () => {
     const { place } = useParams();
     console.log(place);
     const { data: hotelTickets, isLoading, isSuccess } = useGetHotelTicketsQuery(place);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     // decide what to render
     let content = null;

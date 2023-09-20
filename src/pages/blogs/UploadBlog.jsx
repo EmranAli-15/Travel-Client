@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import blogImg from '../../assets/home/blogImg.png'
 import { useUploadBlogMutation } from '../../features/blog/blogApi';
 import { useSelector } from 'react-redux';
@@ -6,7 +6,6 @@ const imgToken = import.meta.env.VITE_IMAGE_TOKEN;
 
 const UploadBlog = () => {
     const { user } = useSelector(state => state.auth);
-    console.log(user);
     const image_hosting_url = `https://api.imgbb.com/1/upload?key=${imgToken}`
     const [uploadBlog, { isLoading, isSuccess }] = useUploadBlogMutation();
 
@@ -69,12 +68,15 @@ const UploadBlog = () => {
         const authorPhoto = user?.photoURL;
         const date = new Date();
         const blog = { img: urls, title, details, authorName, authorPhoto, date }
+        setUrls([]);
 
         uploadBlog(blog);
-
         setDetails('');
         setTitle('');
     };
+
+
+
 
     return (
         <div>
@@ -97,6 +99,9 @@ const UploadBlog = () => {
                             </label>
                             <label>
                                 {btnDisable && <p className='text-red-500'>uploading..</p>}
+                            </label>
+                            <label>
+                                {urls.length +' ' + 'Photo'}
                             </label>
                         </div>
                         <div className='w-[80%]'>

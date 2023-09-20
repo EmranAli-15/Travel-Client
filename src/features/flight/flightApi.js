@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { apiSlice } from "../api/apiSlice";
 import { flightTickets } from '../CRUD/crudSlice'
 
@@ -11,12 +12,15 @@ export const flightApi = apiSlice.injectEndpoints({
                     body: data,
                 }),
             async onQueryStarted(arg, { queryFulfilled }) {
-                try {
-                    const result = await queryFulfilled;
-                    const data = result.data;
-                    console.log(data);
-                } catch (err) {
-
+                const result = await queryFulfilled;
+                if (result.data.acknowledged === true) {
+                    Swal.fire({
+                        position: 'top',
+                        icon: 'success',
+                        title: 'A flight ticket uploaded',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                 }
             }
         }),
