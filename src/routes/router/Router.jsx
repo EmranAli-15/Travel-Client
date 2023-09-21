@@ -14,6 +14,7 @@ import BlogsLayout from '../../layout/BlogsLayout';
 import UploadBlog from '../../pages/blogs/UploadBlog';
 import SingleBlog from '../../pages/blogs/SingleBlog'
 import HotelTickets from '../../pages/ticketCards/HotelTickets';
+import EditBlog from '../../pages/blogs/EditBlog';
 
 const router = createBrowserRouter([
     {
@@ -48,7 +49,11 @@ const router = createBrowserRouter([
             {
                 path: "/uploadBlog",
                 element: <UploadBlog></UploadBlog>
-            }
+            },
+            {
+                path: "/editBlog/:id",
+                element: <EditBlog></EditBlog>
+            },
         ]
     },
 

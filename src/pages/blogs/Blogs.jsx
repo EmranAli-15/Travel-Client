@@ -59,7 +59,11 @@ const Blogs = () => {
                                 <div className={`${show && _id === matched ? 'block' : 'hidden'} w-[120px] h-[80px] rounded-lg absolute top-5 z-10 shadow-xl bg-white border`}>
                                     <div className='flex items-center gap-x-1 p-2'>
                                         <AiFillEdit className='text-blue-500'></AiFillEdit>
-                                        <p className='text-[14px] cursor-pointer'>Edit blog</p>
+                                        <p className='text-[14px] cursor-pointer'>
+                                            <Link to={`/editBlog/${_id}`}>
+                                                Edit blog
+                                            </Link>
+                                        </p>
                                     </div>
                                     <div className='flex items-center gap-x-1 p-2 '>
                                         <AiFillDelete className='text-red-500'></AiFillDelete>

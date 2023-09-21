@@ -33,12 +33,34 @@ export const blogApi = apiSlice.injectEndpoints({
         }),
 
         getSingleBlog: builder.query({
-            query: (id) => `/getSingleBlog/${id}`
+            query: (id) => `/getSingleBlog/${id}`,
+            providesTags: ["Blogs"]
         }),
 
         popularBlogLink: builder.query({
             query: () => '/popularBlogLink',
             providesTags: ["PopularBlogs"]
+        }),
+
+        updateBlog: builder.mutation({
+            query: (data) => ({
+                url: "/updateBlog",
+                method: "PATCH",
+                body: data
+            }),
+            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+                const result = await queryFulfilled;
+                if (result.data.acknowledged === true) {
+                    Swal.fire({
+                        position: 'top',
+                        icon: 'success',
+                        title: 'Updated',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+            },
+            invalidatesTags: ["Blogs", "PopularBlogs"]
         }),
 
         deleteBlog: builder.mutation({
@@ -68,5 +90,6 @@ export const {
     useGetBlogsQuery,
     useGetSingleBlogQuery,
     usePopularBlogLinkQuery,
-    useDeleteBlogMutation
+    useDeleteBlogMutation,
+    useUpdateBlogMutation,
 } = blogApi;

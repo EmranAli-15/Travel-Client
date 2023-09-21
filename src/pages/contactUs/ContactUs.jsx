@@ -17,9 +17,7 @@ const ContactUs = () => {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                form.reset();
             }, (error) => {
-                console.log(error.text);
             });
     };
 
