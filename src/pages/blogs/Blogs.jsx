@@ -1,12 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
-import { useGetBlogsQuery } from '../../features/blog/blogApi';
+import { useDeleteBlogMutation, useGetBlogsQuery } from '../../features/blog/blogApi';
 import { LiaUserCircle } from "react-icons/lia";
+import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import { BsThreeDots } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import BlogsLoader from '../../ui/BlogsLoader';
 
 const Blogs = () => {
     const { data: allBlogs, isLoading, isSuccess } = useGetBlogsQuery();
+    const [deleteBlog, { }] = useDeleteBlogMutation();
+    const [show, setShow] = useState(false);
+    const [matched, setMatched] = useState('');
+
+    const toggling = (id) => {
+        if (matched === id) {
+            setShow(!show);
+        }
+        else {
+            setShow(true);
+        }
+        setMatched(id);
+    }
+
+    const handleDelete = (id) => {
+        deleteBlog(id)
+    }
 
 
     // decide what to render
@@ -35,9 +54,22 @@ const Blogs = () => {
                                 </div>
                                 <p className='text-gray-500'>{authorName ? authorName : 'John Doe'}</p>
                             </div>
-                            <p className='text-gray-500'>
-                                {moment(date).fromNow()}
-                            </p>
+                            <div className='flex flex-col items-end relative'>
+                                <BsThreeDots onClick={() => toggling(_id)} className='cursor-pointer'></BsThreeDots>
+                                <div className={`${show && _id === matched ? 'block' : 'hidden'} w-[120px] h-[80px] rounded-lg absolute top-5 z-10 shadow-xl bg-white border`}>
+                                    <div className='flex items-center gap-x-1 p-2'>
+                                        <AiFillEdit className='text-blue-500'></AiFillEdit>
+                                        <p className='text-[14px] cursor-pointer'>Edit blog</p>
+                                    </div>
+                                    <div className='flex items-center gap-x-1 p-2 '>
+                                        <AiFillDelete className='text-red-500'></AiFillDelete>
+                                        <p onClick={() => handleDelete(_id)} className='text-[14px] cursor-pointer'>Delete blog</p>
+                                    </div>
+                                </div>
+                                <p className='text-gray-500'>
+                                    {moment(date).fromNow()}
+                                </p>
+                            </div>
                         </div>
                         <h1 className='text-lg mb-3 font-medium'>{title}</h1>
 
