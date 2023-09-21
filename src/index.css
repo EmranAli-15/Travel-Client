@@ -60,11 +60,12 @@
     background-image: linear-gradient(90deg, #1ab79d 0%, #31b978 100%);
     color: azure;
     font-weight: 600;
-    padding: 3px 15px;
+    padding: 4px 15px;
     border-radius: 3px;
+    display: inherit;
 }
 
 .deActiveNav {
     font-weight: 600;
-    padding: 3px 15px;
+    padding: 4px 15px;
 }

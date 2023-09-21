@@ -3,6 +3,7 @@ import Banner from './components/Banner';
 import PopularPlace from './components/PopularPlace';
 import WhyBest from './components/WhyBest';
 import HappyCustomers from './components/HappyCustomers';
+import ContactUs from '../contactUs/ContactUs';
 
 const Home = () => {
     return (
@@ -14,7 +15,9 @@ const Home = () => {
                 <WhyBest></WhyBest>
             </div>
             <HappyCustomers></HappyCustomers>
-
+            <div className='max-w-7xl mx-auto'>
+                <ContactUs></ContactUs>
+            </div>
         </div>
     );
 };

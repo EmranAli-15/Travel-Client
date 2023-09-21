@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import Navbar from '../pages/shared/navbar/Navbar';
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
     const navigate = useNavigate();
+    const [active, setActive] = useState(false);
 
     const { user, isAdmin, dashboardLoading } = useSelector(state => state.auth);
     const { email } = user || {};
@@ -32,7 +33,6 @@ const Dashboard = () => {
                     <div className="drawer-content flex flex-col p-5">
                         <label htmlFor="my-drawer-2" className="lg:hidden flex justify-end"><TiThMenu size={25}></TiThMenu></label>
                         <Outlet></Outlet>
-
                     </div>
                     <div className="drawer-side">
                         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>

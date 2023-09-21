@@ -40,7 +40,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-center hidden lg:flex gap-x-20">
                 <ul className="flex gap-x-10 menu-horizontal px-1">
-                    <li><NavLink to="/blogs" className="flex items-center gap-x-1 text-xl"> <FaBlog></FaBlog> Blogs</NavLink></li>
+                    <li><NavLink to="/blogs" className="flex items-center gap-x-1 text-xl"> <FaBlog className='text-blue-500'></FaBlog> Blogs</NavLink></li>
                 </ul>
                 <div className='flex items-center gap-x-5'>
                     <p className='font-serif'>+880 1875184878</p>
@@ -54,7 +54,7 @@ const Navbar = () => {
             <div className="navbar-end mr-5">
                 <Link to="/uploadBlog" className='lg:flex items-center gap-x-1 mr-10 hidden'>
                     <div>
-                        <MdOutlineScreenShare size={30}></MdOutlineScreenShare>
+                        <MdOutlineScreenShare size={30} className='text-blue-500'></MdOutlineScreenShare>
                     </div>
                     <h1 className='text-xl'>Share Your Blog</h1>
                 </Link>
