@@ -13,7 +13,6 @@ const Dashboard = () => {
 
     const { user, isAdmin, dashboardLoading } = useSelector(state => state.auth);
     const { email } = user || {};
-    console.log(dashboardLoading)
     useAdminSecureQuery(email)
 
     const handleLogOut = () => {

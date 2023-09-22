@@ -53,7 +53,7 @@ const UploadBlog = () => {
                 setBtnDisable(false);
             })
             .catch((error) => {
-                console.error('Error uploading files:', error);
+                
             });
 
 
