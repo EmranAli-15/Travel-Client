@@ -29,7 +29,7 @@ const SingleBlog = () => {
 
 const SingleBlogPost = ({ blog }) => {
     return (
-        <div>
+        <div className='mx-4 md:mx-0'>
             <h1 className='text-2xl font-medium'>{blog.title}</h1>
 
             <p className='my-3'>{blog.details}</p>

@@ -14,7 +14,6 @@ const Car = () => {
         const sits = form.sits.value;
 
         const ticketData = { from, to, dateStart, dateEnd, sits };
-        console.log(ticketData);
     }
 
     return (

@@ -50,7 +50,7 @@ const Dashboard = () => {
                                 !isAdmin && !dashboardLoading &&
                                 <>
                                     <li>
-                                        <NavLink to="">My Tickets</NavLink>
+                                        <NavLink to="" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>My Tickets</NavLink>
                                     </li>
                                 </> ||
                                 <>Loading</>

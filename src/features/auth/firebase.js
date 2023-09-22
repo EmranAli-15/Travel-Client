@@ -1,20 +1,22 @@
 import app from '../../firebase/firebase.config'
 import {
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
     signOut,
-    onAuthStateChanged,
+    getAuth,
     updateProfile,
-    getAuth
+    signInWithPopup,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
 } from "firebase/auth";
 
 const auth = getAuth(app);
 
 export {
     auth,
-    createUserWithEmailAndPassword,
+    signOut,
     updateProfile,
+    signInWithPopup,
     onAuthStateChanged,
     signInWithEmailAndPassword,
-    signOut
+    createUserWithEmailAndPassword,
 }

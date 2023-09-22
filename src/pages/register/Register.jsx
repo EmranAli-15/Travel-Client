@@ -6,6 +6,7 @@ import signUpImg from '../../assets/authentication/signupImg.png'
 import { auth, createUserWithEmailAndPassword } from '../../features/auth/firebase';
 import { useDispatch } from 'react-redux';
 import { login } from '../../features/auth/authSlice';
+import GoogleLogin from '../../components/GoogleLogin';
 
 const Register = () => {
     const [toggle, setToggle] = useState(false);
@@ -37,7 +38,7 @@ const Register = () => {
                 ))
             })
             .catch(error => {
-                console.log(error)
+                {}
             })
     }
 
@@ -136,6 +137,9 @@ const Register = () => {
                             </button>
 
                         </form>
+
+                        <GoogleLogin></GoogleLogin>
+
                         <div className="mt-10 flex flex-col md:flex-row items-center justify-center">
                             Already have an account{" "}
                             <span>

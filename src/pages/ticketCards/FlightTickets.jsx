@@ -22,12 +22,12 @@ const FlightTickets = () => {
     }, []);
 
     return (
-        <div className='md:flex max-w-[1200px] mx-auto my-20 gap-x-10'>
-            <div className='md:w-[40%]'>
+        <div className='lg:flex max-w-[1200px] mx-auto mb-20 mt-10 gap-x-5'>
+            <div className='lg:w-[35%] md:w-[80%] w-[90%] mx-auto mb-5 md:mb-0'>
                 <SideCard from={from}></SideCard>
             </div>
 
-            <div className='grid gap-y-1 md:w-[60%]'>
+            <div className='grid mx-auto gap-y-1 lg:w-[65%]'>
 
                 {
                     flightTickets.map((ticket, index) => {
@@ -59,9 +59,9 @@ const FlightTickets = () => {
                                                 <p>{fromShort}</p>
                                                 <div className='flex flex-col items-center mt-4'>
                                                     <div className='flex items-center gap-x-2'>
-                                                        <span className='h-[2px] w-16 bg-black/50'></span>
+                                                        <span className='h-[2px] md:w-16 w-10 bg-black/50'></span>
                                                         <span className='h-2 w-2 border border-black/50'></span>
-                                                        <span className='h-[2px] w-16 bg-black/50'></span>
+                                                        <span className='h-[2px] md:w-16 w-10 bg-black/50'></span>
                                                     </div>
                                                     <div className='text-xs text-gray-500 flex items-center gap-x-1'>
                                                         <p>{distance} km.</p>
@@ -81,9 +81,9 @@ const FlightTickets = () => {
                                                 <p>{toShort}</p>
                                                 <div className='flex flex-col items-center mt-4'>
                                                     <div className='flex items-center gap-x-2'>
-                                                        <span className='h-[2px] w-16 bg-black/50'></span>
+                                                    <span className='h-[2px] md:w-16 w-10 bg-black/50'></span>
                                                         <span className='h-2 w-2 border border-black/50'></span>
-                                                        <span className='h-[2px] w-16 bg-black/50'></span>
+                                                        <span className='h-[2px] md:w-16 w-10 bg-black/50'></span>
                                                     </div>
                                                     <div className='text-xs text-gray-500 flex items-center gap-x-1'>
                                                         <p>{distance} km.</p>

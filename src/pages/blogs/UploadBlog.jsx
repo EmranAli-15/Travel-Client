@@ -20,7 +20,6 @@ const UploadBlog = () => {
     const selectedFile = (event) => {
         setBtnDisable(true);
         const selectedFiles = event.target.files;
-        console.log(selectedFiles);
 
         for (const one of selectedFiles) {
             data.push(one);
@@ -51,7 +50,6 @@ const UploadBlog = () => {
         }
         Promise.all(fetchPromises)
             .then(() => {
-                console.log('all file uploaded');
                 setBtnDisable(false);
             })
             .catch((error) => {

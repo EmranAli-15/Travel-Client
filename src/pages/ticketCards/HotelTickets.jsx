@@ -9,7 +9,6 @@ import { useGetHotelTicketsQuery } from '../../features/hotel/hotelApi';
 
 const HotelTickets = () => {
     const { place } = useParams();
-    console.log(place);
     const { data: hotelTickets, isLoading, isSuccess } = useGetHotelTicketsQuery(place);
 
     useEffect(() => {
@@ -69,8 +68,8 @@ const HotelTickets = () => {
     }
 
     return (
-        <div className='lg:flex max-w-[1200px] mx-auto my-20 gap-x-5'>
-            <div className='lg:w-[35%] w-[80%] mx-auto'>
+        <div className='lg:flex max-w-[1200px] mx-auto mb-20 mt-10 gap-x-5'>
+            <div className='lg:w-[35%] md:w-[80%] w-[90%] mx-auto mb-5 md:mb-0'>
                 <HotelSideCard></HotelSideCard>
             </div>
             <div className='grid mx-auto gap-y-1 lg:w-[65%]'>

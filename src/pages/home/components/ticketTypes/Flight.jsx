@@ -21,7 +21,6 @@ const Flight = () => {
         // const classType = form.class.value;
 
         // const ticketData = { from, to, date, guests, classType };
-        // console.log(ticketData);
     }
 
     return (

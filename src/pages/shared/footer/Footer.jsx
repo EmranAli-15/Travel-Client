@@ -118,7 +118,7 @@ const Footer = () => {
                             </div>
                             <div className="flex items-center gap-x-2">
                                 <FaPhoneAlt className="text-4xl p-2 bg-[#1ab79d] rounded-xl text-white"></FaPhoneAlt>
-                                <a href="" className="link link-hover">+9518889372</a>
+                                <a href="" className="link link-hover">+880 01875184878</a>
                             </div>
                             <div className="flex text-4xl gap-x-4 relative mt-4">
                                 <FaFacebookF className="bg-[#1ab79d] cursor-pointer p-2 rounded-xl text-white hover:bg-white hover:duration-700"></FaFacebookF>
@@ -134,7 +134,7 @@ const Footer = () => {
             </div>
 
             <div className="p-8 bg-gradient text-base-content">
-                <p className="text-center text-white">Copyright © 2023 WRITO. All Rights Reserved</p>
+                <p className="text-center text-white">Copyright © 2023 TRAVEL. All Rights Reserved</p>
             </div>
 
         </div>

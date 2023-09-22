@@ -16,7 +16,6 @@ const Hotel = () => {
         const rooms = form.rooms.value;
 
         const ticketData = { place, dateStart, dateEnd, guests, rooms };
-        console.log(ticketData);
         navigate(`/hotelTickets/${place}`);
 
     }

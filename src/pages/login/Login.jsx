@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { auth, signInWithEmailAndPassword, signOut } from '../../features/auth/firebase'
 import loginImg from '../../assets/authentication/loginImg.png'
 import { Button } from 'flowbite-react';
+import GoogleLogin from '../../components/GoogleLogin';
 
 const Login = () => {
 
@@ -23,12 +24,6 @@ const Login = () => {
             .catch(error => {
 
             })
-    }
-
-    const handleLogOut = () => {
-        signOut(auth)
-            .then(result => console.log(result))
-            .catch(error => console.log(error))
     }
 
     return (
@@ -94,6 +89,9 @@ const Login = () => {
                             </button>
 
                         </form>
+
+                        <GoogleLogin></GoogleLogin>
+
                         <div className="mt-10 flex flex-col md:flex-row items-center justify-center">
                             Dont have an account yet?{" "}
                             <span>
@@ -112,7 +110,6 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-            <Button onClick={handleLogOut}>LogOut</Button>
         </div>
     );
 };
