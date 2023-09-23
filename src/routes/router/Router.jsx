@@ -15,6 +15,7 @@ import UploadBlog from '../../pages/blogs/UploadBlog';
 import SingleBlog from '../../pages/blogs/SingleBlog'
 import HotelTickets from '../../pages/ticketCards/HotelTickets';
 import EditBlog from '../../pages/blogs/EditBlog';
+import FlightBooking from '../../pages/ticketCards/bookingTickets/FlightBooking';
 
 const router = createBrowserRouter([
     {
@@ -53,6 +54,14 @@ const router = createBrowserRouter([
             {
                 path: "/editBlog/:id",
                 element: <EditBlog></EditBlog>
+            },
+
+
+
+            // ticket booking fill up pages
+            {
+                path: "/flightBooking/:id",
+                element: <FlightBooking></FlightBooking>
             },
         ]
     },

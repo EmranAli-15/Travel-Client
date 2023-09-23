@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react';
 import SideCard from './components/SideCard';
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useGetFlightTicketsMutation } from '../../features/flight/flightApi';
 import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 
 const FlightTickets = () => {
+    const { user } = useSelector(state => state.auth);
+    const { email } = user || {};
+    const navigate = useNavigate();
 
     const { flightTickets } = useSelector(state => state.crud)
 
@@ -21,6 +25,18 @@ const FlightTickets = () => {
         window.scrollTo(0, 0);
     }, []);
 
+    const handleBook = (id) => {
+        if (!email){
+            Swal.fire({
+                icon: 'error',
+                title: 'Login First'
+              })
+        }
+        else{
+            navigate(`/flightBooking/${id}`)
+        }
+    }
+
     return (
         <div className='lg:flex max-w-[1200px] mx-auto mb-20 mt-10 gap-x-5'>
             <div className='lg:w-[35%] md:w-[80%] w-[90%] mx-auto mb-5 md:mb-0'>
@@ -33,6 +49,7 @@ const FlightTickets = () => {
                     flightTickets.map((ticket, index) => {
                         const
                             {
+                                _id,
                                 from,
                                 to,
                                 fromShort,
@@ -81,7 +98,7 @@ const FlightTickets = () => {
                                                 <p>{toShort}</p>
                                                 <div className='flex flex-col items-center mt-4'>
                                                     <div className='flex items-center gap-x-2'>
-                                                    <span className='h-[2px] md:w-16 w-10 bg-black/50'></span>
+                                                        <span className='h-[2px] md:w-16 w-10 bg-black/50'></span>
                                                         <span className='h-2 w-2 border border-black/50'></span>
                                                         <span className='h-[2px] md:w-16 w-10 bg-black/50'></span>
                                                     </div>
@@ -112,7 +129,7 @@ const FlightTickets = () => {
                                     <div className='md:w-[25%] flex justify-between'>
                                         <div className='mr-3 w-full flex md:flex-col gap-x-5 justify-center items-center text-right md:border-l border-l-black/40 pl-2'>
                                             <h1 className='md:text-lg text-orange-600 md:font-serif font-bold'>TK, {price}</h1>
-                                            <button className='bg-blue-500 px-3 py-2 mt-3 text-white rounded-md'>
+                                            <button onClick={() => handleBook(_id)} className='bg-blue-500 px-3 py-2 mt-3 text-white rounded-md'>
                                                 Book now
                                             </button>
                                         </div>
