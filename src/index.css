@@ -69,3 +69,17 @@
     font-weight: 600;
     padding: 4px 15px;
 }
+
+
+
+
+
+
+
+/*********************************************
+<------- Error page design ------>
+*********************************************/
+.errorPageBg{
+    background-image: url('https://i.ibb.co/ph3K850/13315300-5203299.jpg');
+    background-size: cover;
+}

@@ -1,5 +1,6 @@
 import { apiSlice } from "../api/apiSlice";
-import { dashboardLoading, isAdmin, loading } from "./authSlice";
+import { dashboardLoading, isAdmin, loading, logout } from "./authSlice";
+import { auth, signOut } from '../auth/firebase'
 
 export const authApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -24,12 +25,21 @@ export const authApi = apiSlice.injectEndpoints({
                 url: `/adminSecure/${email}`
             }),
 
-            async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+            async onQueryStarted(arg, { queryFulfilled, dispatch, }) {
                 try {
                     const result = await queryFulfilled;
+                    console.log(result)
                     const data = result.data;
                     dispatch(isAdmin(data))
-                } catch (err) { }
+                } catch (err) {
+                    signOut(auth)
+                        .then(result => {
+                            logout()
+                        })
+                        .catch(error => {
+
+                        })
+                }
             }
         })
     }),

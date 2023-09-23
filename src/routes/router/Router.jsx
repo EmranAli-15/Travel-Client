@@ -16,12 +16,14 @@ import SingleBlog from '../../pages/blogs/SingleBlog'
 import HotelTickets from '../../pages/ticketCards/HotelTickets';
 import EditBlog from '../../pages/blogs/EditBlog';
 import FlightBooking from '../../pages/ticketCards/bookingTickets/FlightBooking';
+import ErrorPage from '../../pages/shared/errorPage/ErrorPage';
 
 const router = createBrowserRouter([
     {
         // regular route path
         path: "/",
         element: <Prime></Prime>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: "/",
