@@ -24,7 +24,9 @@ const PopularBlogLink = () => {
         return content = <div>
             {
                 popularBlogs.map(blogs => <Link to={`/blogs/singleBlog/${blogs._id}`} key={blogs._id} className='flex items-center gap-x-2 mb-3'>
-                    <img className='w-[80px]' src={blogs.img[0]} alt="" />
+                    <div className='w-[80px] h-[50px]'>
+                        <img className='h-full w-full overflow-visible' src={blogs.img[0]} alt="" />
+                    </div>
                     <h2 className='text-blue-400 font-bold text-[16px] mb-3'>{blogs.title.length < 20 ? blogs.title : <>{blogs.title.slice(0, 20)} ...</>}</h2>
                 </Link>)
             }

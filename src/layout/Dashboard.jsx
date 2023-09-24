@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import Navbar from '../pages/shared/navbar/Navbar';
 import { FaHome, FaSignOutAlt } from "react-icons/fa";
@@ -9,12 +9,11 @@ import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
     const navigate = useNavigate();
-    const [active, setActive] = useState(false);
 
-    const { user, isAdmin, dashboardLoading } = useSelector(state => state.auth);
+    const { user } = useSelector(state => state.auth);
     const { email } = user || {};
-    useAdminSecureQuery(email)
-    if (!email) {
+    const { data, isLoading, isSuccess, isError } = useAdminSecureQuery(email)
+    if (!email && !isLoading && isError) {
         navigate('/');
     }
 
@@ -24,6 +23,38 @@ const Dashboard = () => {
                 navigate('/');
             })
             .catch(() => { })
+    }
+
+    // decide what to render
+    let content = null;
+    if (isLoading && !data) {
+        content = <p>Loading...</p>
+    }
+    if (data) {
+        content = <>
+            <li>
+                <NavLink to="/dashboard/adminHome" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>My Dashboard</NavLink>
+            </li>
+            <li className='my-4'>
+                <NavLink to="/dashboard/flightTicket" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>Publish Flight Ticket</NavLink>
+            </li>
+            <li>
+                <NavLink to="/dashboard/hotelTicket" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>Publish Flight Hotel</NavLink>
+            </li>
+        </>
+    }
+    if (!isLoading && !data) {
+        content = <>
+            <li>
+                <NavLink to="/dashboard/userHome" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>My Dashboard</NavLink>
+            </li>
+            <li className='my-4'>
+                <NavLink to="/dashboard/user" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>My Flight</NavLink>
+            </li>
+            <li>
+                <NavLink to="/dashboard/userd" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>My Hotel</NavLink>
+            </li>
+        </>
     }
 
     return (
@@ -40,22 +71,7 @@ const Dashboard = () => {
                         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                         <ul className="p-4 mt-2 w-64 min-h-[calc(80vh)] bg-slate-100 text-base-content relative">
                             {
-                                isAdmin && !dashboardLoading &&
-                                <>
-                                    <li>
-                                        <NavLink to="/dashboard/flightTicket" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>Publish Flight Ticket</NavLink>
-                                    </li>
-                                    <li className='mt-4'>
-                                        <NavLink to="/dashboard/hotelTicket" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>Publish Flight Hotel</NavLink>
-                                    </li>
-                                </> ||
-                                !isAdmin && !dashboardLoading &&
-                                <>
-                                    <li>
-                                        <NavLink to="" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>My Tickets</NavLink>
-                                    </li>
-                                </> ||
-                                <>Loading</>
+                                content
                             }
                             <div className='absolute bottom-2'>
                                 <div>

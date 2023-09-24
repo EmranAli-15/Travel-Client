@@ -6,6 +6,7 @@ const imgToken = import.meta.env.VITE_IMAGE_TOKEN;
 
 const UploadBlog = () => {
     const { user } = useSelector(state => state.auth);
+    const { displayName, photoURL, email } = user || {};
     const image_hosting_url = `https://api.imgbb.com/1/upload?key=${imgToken}`
     const [uploadBlog, { isLoading, isSuccess }] = useUploadBlogMutation();
 
@@ -53,7 +54,7 @@ const UploadBlog = () => {
                 setBtnDisable(false);
             })
             .catch((error) => {
-                
+
             });
 
 
@@ -62,10 +63,12 @@ const UploadBlog = () => {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        const authorName = user?.displayName;
-        const authorPhoto = user?.photoURL;
+
+        const authorName = displayName;
+        const authorPhoto = photoURL;
+        const authorEmail = email;
         const date = new Date();
-        const blog = { img: urls, title, details, authorName, authorPhoto, date }
+        const blog = { img: urls, title, details, authorName, authorPhoto, date, authorEmail }
         setUrls([]);
 
         uploadBlog(blog);
@@ -78,7 +81,7 @@ const UploadBlog = () => {
 
     return (
         <div>
-            <h1 className='text-4xl text-center font-serif mt-5'>Share Your Awesome Moment!</h1>
+            <h1 className='text-4xl text-center font-serif mt-5'>Share Your Awesome Moment</h1>
             <form onSubmit={onSubmit}>
                 <div className='max-w-[800px] mx-auto pt-5 pb-10'>
                     <textarea value={title} onChange={e => setTitle(e.target.value)} required className='bg-black/5 w-full rounded-md focus:border-[#1ab79d] outline-0 p-3 border border-white' placeholder='Your Blog Title'></textarea>
@@ -99,7 +102,7 @@ const UploadBlog = () => {
                                 {btnDisable && <p className='text-red-500'>uploading..</p>}
                             </label>
                             <label>
-                                {urls.length +' ' + 'Photo'}
+                                {urls.length + ' ' + 'Photo'}
                             </label>
                         </div>
                         <div className='w-[80%]'>

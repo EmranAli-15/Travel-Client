@@ -6,9 +6,14 @@ import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 import { BsThreeDots } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import BlogsLoader from '../../ui/BlogsLoader';
+import { useSelector } from 'react-redux';
+import goAway from '../../assets/authentication/goAway.gif'
+import Swal from 'sweetalert2';
 
 const Blogs = () => {
     const { data: allBlogs, isLoading, isSuccess } = useGetBlogsQuery();
+    const { user } = useSelector(state => state.auth);
+    const { email: userEmail } = user || {};
     const [deleteBlog, { }] = useDeleteBlogMutation();
     const [show, setShow] = useState(false);
     const [matched, setMatched] = useState('');
@@ -24,7 +29,24 @@ const Blogs = () => {
     }
 
     const handleDelete = (id) => {
-        deleteBlog(id)
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                deleteBlog(id)
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            }
+        })
     }
 
 
@@ -40,7 +62,7 @@ const Blogs = () => {
         return content = <>
             {
                 allBlogs.map(blog => {
-                    const { _id, title, details, authorName, authorPhoto, date, img } = blog
+                    const { _id, title, details, authorName, authorPhoto, authorEmail, date, img } = blog
                     return <div key={_id} className='border p-2 rounded mb-5'>
                         <div className='flex items-center justify-between my-2'>
                             <div className='flex items-center gap-x-2'>
@@ -57,18 +79,26 @@ const Blogs = () => {
                             <div className='flex flex-col items-end relative'>
                                 <BsThreeDots onClick={() => toggling(_id)} className='cursor-pointer'></BsThreeDots>
                                 <div className={`${show && _id === matched ? 'block' : 'hidden'} w-[120px] h-[80px] rounded-lg absolute top-5 z-10 shadow-xl bg-white border`}>
-                                    <div className='flex items-center gap-x-1 p-2'>
-                                        <AiFillEdit className='text-blue-500'></AiFillEdit>
-                                        <p className='text-[14px] cursor-pointer'>
-                                            <Link to={`/editBlog/${_id}`}>
-                                                Edit blog
-                                            </Link>
-                                        </p>
-                                    </div>
-                                    <div className='flex items-center gap-x-1 p-2 '>
-                                        <AiFillDelete className='text-red-500'></AiFillDelete>
-                                        <p onClick={() => handleDelete(_id)} className='text-[14px] cursor-pointer'>Delete blog</p>
-                                    </div>
+                                    {
+                                        userEmail && userEmail === authorEmail && <>
+                                            <div className='flex items-center gap-x-1 p-2'>
+                                                <AiFillEdit className='text-blue-500'></AiFillEdit>
+                                                <p className='text-[14px] cursor-pointer'>
+                                                    <Link to={`/editBlog/${_id}`}>
+                                                        Edit blog
+                                                    </Link>
+                                                </p>
+                                            </div>
+                                            <div className='flex items-center gap-x-1 p-2 '>
+                                                <AiFillDelete className='text-red-500'></AiFillDelete>
+                                                <p onClick={() => handleDelete(_id)} className='text-[14px] cursor-pointer'>Delete blog</p>
+                                            </div>
+                                        </> ||
+                                        <div className='flex flex-col items-center'>
+                                            <p className='text-[#f0003c] font-semibold'>GO AWAY</p>
+                                            <img className='w-[60px] relative bottom-1' src={goAway} alt="" />
+                                        </div>
+                                    }
                                 </div>
                                 <p className='text-gray-500'>
                                     {moment(date).fromNow()}

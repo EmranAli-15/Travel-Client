@@ -1,5 +1,5 @@
 import { apiSlice } from "../api/apiSlice";
-import { dashboardLoading, isAdmin, loading, logout } from "./authSlice";
+import {  logout } from "./authSlice";
 import { auth, signOut } from '../auth/firebase'
 
 export const authApi = apiSlice.injectEndpoints({
@@ -28,9 +28,7 @@ export const authApi = apiSlice.injectEndpoints({
             async onQueryStarted(arg, { queryFulfilled, dispatch, }) {
                 try {
                     const result = await queryFulfilled;
-                    console.log(result)
                     const data = result.data;
-                    dispatch(isAdmin(data))
                 } catch (err) {
                     signOut(auth)
                         .then(result => {

@@ -17,6 +17,9 @@ import HotelTickets from '../../pages/ticketCards/HotelTickets';
 import EditBlog from '../../pages/blogs/EditBlog';
 import FlightBooking from '../../pages/ticketCards/bookingTickets/FlightBooking';
 import ErrorPage from '../../pages/shared/errorPage/ErrorPage';
+import UserHome from '../../pages/dashboard/user/UserHome';
+import Common from '../../pages/dashboard/Common';
+import AdminHome from '../../pages/dashboard/admin/AdminHome';
 
 const router = createBrowserRouter([
     {
@@ -73,6 +76,18 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: <Dashboard></Dashboard>,
         children: [
+            {
+                path: "/dashboard",
+                element: <Common></Common>
+            },
+            {
+                path: "/dashboard/userHome",
+                element: <UserHome></UserHome>
+            },
+            {
+                path: "/dashboard/adminHome",
+                element: <AdminHome></AdminHome>
+            },
             {
                 path: "/dashboard/flightTicket",
                 element: <FlightTicket></FlightTicket>

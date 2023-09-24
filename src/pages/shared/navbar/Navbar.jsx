@@ -1,16 +1,34 @@
 import React from 'react';
 import logo from '../../../assets/home/logo.png'
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { auth, signOut } from '../../../features/auth/firebase'
 import { BsPersonCircle } from "react-icons/bs";
 import { BiLogIn } from "react-icons/bi";
 import { FaBlog } from 'react-icons/fa';
 import { MdOutlineScreenShare, MdSpaceDashboard } from "react-icons/md";
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
 
     const { user } = useSelector(state => state.auth);
+    const { email } = user || {};
+    const navigate = useNavigate();
+
+    const handleShareBlog = () => {
+        if (!email) {
+            return Swal.fire({
+                title: 'Please Login First !',
+                icon: 'warning',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Login !'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login')
+                }
+            })
+        }
+        navigate('/uploadBlog')
+    }
 
     return (
         <div className="navbar bg-slate-100">
@@ -43,14 +61,14 @@ const Navbar = () => {
                                 Blogs
                             </Link>
                         </li>
-                        <li>
-                            <Link to="/uploadBlog" className='flex items-center pl-4 gap-x-2 mt-3 font-medium'>
+                        <div>
+                            <div onClick={handleShareBlog} className='flex items-center cursor-pointer pl-4 gap-x-2 mt-3 font-medium'>
                                 <div>
                                     <MdOutlineScreenShare className='text-blue-500' size={20}></MdOutlineScreenShare>
                                 </div>
                                 <h1>Share Your Blog</h1>
-                            </Link>
-                        </li>
+                            </div>
+                        </div>
                     </ul>
                 </div>
                 <Link to="/">
@@ -71,12 +89,12 @@ const Navbar = () => {
                 </div>
             </div>
             <div className="navbar-end mr-5">
-                <Link to="/uploadBlog" className='lg:flex items-center gap-x-1 mr-10 hidden'>
+                <div onClick={handleShareBlog} className='lg:flex items-center cursor-pointer gap-x-1 mr-10 hidden'>
                     <div>
                         <MdOutlineScreenShare size={30} className='text-blue-500'></MdOutlineScreenShare>
                     </div>
                     <h1 className='text-xl'>Share Your Blog</h1>
-                </Link>
+                </div>
                 <div>
                     {
                         user ?
