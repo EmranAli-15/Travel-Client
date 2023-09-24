@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 
 // /searchFlightTickets
 
-const SideCard = ({ from }) => {
+const SideCard = ({ from, to }) => {
 
     const [show, setShow] = useState(false);
 
-    const [name, setName] = useState('');
+    const [name, setName] = useState(to);
     const [checkIn, setCheckIn] = useState('');
     const [checkOut, setCheckOut] = useState('');
     const [count, setCount] = useState(1);

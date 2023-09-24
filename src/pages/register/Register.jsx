@@ -7,6 +7,7 @@ import { auth, createUserWithEmailAndPassword } from '../../features/auth/fireba
 import { useDispatch } from 'react-redux';
 import { login } from '../../features/auth/authSlice';
 import GoogleLogin from '../../components/GoogleLogin';
+import { Helmet } from 'react-helmet';
 
 const Register = () => {
     const [toggle, setToggle] = useState(false);
@@ -46,6 +47,9 @@ const Register = () => {
 
     return (
         <div className='max-w-7xl mx-auto'>
+            <Helmet>
+                <title>Travel - Register</title>
+            </Helmet>
             <div>
                 <div className="flex flex-col md:flex-row justify-between h-full items-center min-h-screen sm:justify-center sm:pt-0">
                     <div className="w-full md:w-1/2">

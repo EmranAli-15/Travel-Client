@@ -6,12 +6,12 @@ import { useNavigate } from 'react-router-dom';
 
 // /searchHotelTickets
 
-const HotelSideCard = () => {
+const HotelSideCard = ({place}) => {
 
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
 
-    const [name, setName] = useState('');
+    const [name, setName] = useState(place);
     const [checkIn, setCheckIn] = useState('');
     const [checkOut, setCheckOut] = useState('');
     const [count, setCount] = useState(1);

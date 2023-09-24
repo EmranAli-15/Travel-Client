@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useGetFlightTicketsMutation } from '../../features/flight/flightApi';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const FlightTickets = () => {
     const { user } = useSelector(state => state.auth);
@@ -39,8 +40,11 @@ const FlightTickets = () => {
 
     return (
         <div className='lg:flex max-w-[1200px] mx-auto mb-20 mt-10 gap-x-5'>
+            <Helmet>
+                <title>Travel - Flight Ticket</title>
+            </Helmet>
             <div className='lg:w-[35%] md:w-[80%] w-[90%] mx-auto mb-5 md:mb-0'>
-                <SideCard from={from}></SideCard>
+                <SideCard from={from} to={to}></SideCard>
             </div>
 
             <div className='grid mx-auto gap-y-1 lg:w-[65%]'>

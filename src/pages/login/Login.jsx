@@ -5,6 +5,7 @@ import { auth, signInWithEmailAndPassword, signOut } from '../../features/auth/f
 import loginImg from '../../assets/authentication/loginImg.png'
 import { Button } from 'flowbite-react';
 import GoogleLogin from '../../components/GoogleLogin';
+import { Helmet } from 'react-helmet';
 
 const Login = () => {
 
@@ -28,6 +29,9 @@ const Login = () => {
 
     return (
         <div className='max-w-7xl mx-auto'>
+            <Helmet>
+                <title>Travel - Login</title>
+            </Helmet>
             <div>
                 <div className="flex flex-col md:flex-row justify-between h-full items-center min-h-screen sm:justify-center sm:pt-0">
                     <div className="w-full md:w-1/2">

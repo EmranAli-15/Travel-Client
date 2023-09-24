@@ -9,6 +9,7 @@ import BlogsLoader from '../../ui/BlogsLoader';
 import { useSelector } from 'react-redux';
 import goAway from '../../assets/authentication/goAway.gif'
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const Blogs = () => {
     const { data: allBlogs, isLoading, isSuccess } = useGetBlogsQuery();
@@ -53,13 +54,13 @@ const Blogs = () => {
     // decide what to render
     let content = null;
     if (isLoading) {
-        return content = <>
+        content = <>
             <BlogsLoader></BlogsLoader>
             <BlogsLoader></BlogsLoader>
         </>
     }
     if (!isLoading && isSuccess) {
-        return content = <>
+        content = <>
             {
                 allBlogs.map(blog => {
                     const { _id, title, details, authorName, authorPhoto, authorEmail, date, img } = blog
@@ -175,6 +176,9 @@ const Blogs = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Travel - Blogs</title>
+            </Helmet>
             {
                 content
             }

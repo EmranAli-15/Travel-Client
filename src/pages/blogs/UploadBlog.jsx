@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import blogImg from '../../assets/home/blogImg.png'
 import { useUploadBlogMutation } from '../../features/blog/blogApi';
 import { useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet';
 const imgToken = import.meta.env.VITE_IMAGE_TOKEN;
 
 const UploadBlog = () => {
@@ -77,10 +78,11 @@ const UploadBlog = () => {
     };
 
 
-
-
     return (
         <div>
+            <Helmet>
+                <title>Travel - Upload Blog</title>
+            </Helmet>
             <h1 className='text-4xl text-center font-serif mt-5'>Share Your Awesome Moment</h1>
             <form onSubmit={onSubmit}>
                 <div className='max-w-[800px] mx-auto pt-5 pb-10'>

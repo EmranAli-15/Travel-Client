@@ -4,10 +4,14 @@ import PopularPlace from './components/PopularPlace';
 import WhyBest from './components/WhyBest';
 import HappyCustomers from './components/HappyCustomers';
 import ContactUs from '../contactUs/ContactUs';
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
     return (
         <div>
+            <Helmet>
+                <title>Travel with Blog</title>
+            </Helmet>
             <Banner></Banner>
 
             <div className='max-w-7xl mx-auto'>

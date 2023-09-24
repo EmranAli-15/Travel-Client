@@ -4,6 +4,7 @@ import { BsWifi } from 'react-icons/bs';
 import { TbAirConditioningDisabled } from "react-icons/tb";
 import { useParams } from 'react-router-dom';
 import { useGetHotelTicketsQuery } from '../../features/hotel/hotelApi';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -69,8 +70,11 @@ const HotelTickets = () => {
 
     return (
         <div className='lg:flex max-w-[1200px] mx-auto mb-20 mt-10 gap-x-5'>
+            <Helmet>
+                <title>Travel - Hotel Ticket</title>
+            </Helmet>
             <div className='lg:w-[35%] md:w-[80%] w-[90%] mx-auto mb-5 md:mb-0'>
-                <HotelSideCard></HotelSideCard>
+                <HotelSideCard place={place}></HotelSideCard>
             </div>
             <div className='grid mx-auto gap-y-1 lg:w-[65%]'>
                 {
