@@ -2,15 +2,13 @@ import React from 'react';
 import bags from '../../../assets/dashboard/bags_tick.svg'
 import { useParams } from 'react-router-dom';
 import { useGetSingleFlightQuery } from '../../../features/flight/flightApi';
-import { useSelector } from 'react-redux';
 import { FaArrowRight, FaSuitcaseRolling } from 'react-icons/fa';
 import { RxCross2 } from "react-icons/rx";
 import StepperIndicator from './StepperIndicator';
+import FlightForm from './FlightForm';
 
 const FlightBooking = () => {
     const { id } = useParams();
-    const { user } = useSelector(state => state.auth);
-    const { email } = user || {};
     const { data: singleFlight, isLoading, isSuccess } = useGetSingleFlightQuery(id)
 
     // decide what to render
@@ -23,7 +21,7 @@ const FlightBooking = () => {
         </div>
     }
     if (!isLoading && isSuccess) {
-        const { _id, from, to, departAgencyLogo, returnAgencyLogo } = singleFlight || {};
+        const { from, to, departAgencyLogo, returnAgencyLogo } = singleFlight || {};
         content = <div className='bg-slate-200'>
             <div className='max-w-[1400px] mx-4 md:mx-auto pb-48'>
                 <StepperIndicator></StepperIndicator>
@@ -56,7 +54,9 @@ const FlightBooking = () => {
                             <p className='px-1 text-xs md:text-base text-white bg-[#1ab79d] rounded-xl'>included</p>
                         </div>
                     </div>
+
                     <div className='border bg-white border-dashed my-3'></div>
+
                     <div className='md:flex items-center justify-between mt-3'>
                         <div className='flex justify-center items-center gap-x-2'>
                             <img className='w-[40px] rounded-full' src={returnAgencyLogo} alt="" />
@@ -72,9 +72,11 @@ const FlightBooking = () => {
                             <p className='px-1 text-xs md:text-base text-white bg-[#1ab79d] rounded-xl'>included</p>
                         </div>
                     </div>
-                    <div className='flex justify-center mt-5'>
-                        <button className='allBtn'>Book Now</button>
-                    </div>
+
+                    <div className='border bg-red-300 border-dashed my-6'></div>
+
+                    <FlightForm flight={singleFlight}>
+                    </FlightForm>
                 </div>
             </div>
         </div>

@@ -41,8 +41,16 @@ export const flightApi = apiSlice.injectEndpoints({
 
         getSingleFlight: builder.query({
             query: (id) => `/getSingleFlight/${id}`
+        }),
+
+        bookedFlight: builder.mutation({
+            query: (data) => ({
+                url: '/bookedFlight',
+                method: 'POST',
+                body: data
+            })
         })
     })
 })
 
-export const { useGetSingleFlightQuery, usePublishFlightTicketMutation, useGetFlightTicketsMutation } = flightApi;
+export const { useGetSingleFlightQuery, usePublishFlightTicketMutation, useGetFlightTicketsMutation, useBookedFlightMutation } = flightApi;
