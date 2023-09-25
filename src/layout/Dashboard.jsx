@@ -49,7 +49,7 @@ const Dashboard = () => {
                 <NavLink to="/dashboard/userHome" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>My Dashboard</NavLink>
             </li>
             <li className='my-4'>
-                <NavLink to="/dashboard/user" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>My Flight</NavLink>
+                <NavLink to="/dashboard/bookedFlightTickets" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>My Flight</NavLink>
             </li>
             <li>
                 <NavLink to="/dashboard/userd" className={({ isActive }) => (isActive ? 'activeNav' : 'deActiveNav')}>My Hotel</NavLink>

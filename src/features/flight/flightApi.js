@@ -49,8 +49,18 @@ export const flightApi = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: data
             })
+        }),
+
+        bookedUserFlightTickets: builder.query({
+            query: (email) => `/bookedUserFlightTickets/${email}`
         })
     })
 })
 
-export const { useGetSingleFlightQuery, usePublishFlightTicketMutation, useGetFlightTicketsMutation, useBookedFlightMutation } = flightApi;
+export const {
+    useGetSingleFlightQuery,
+    usePublishFlightTicketMutation,
+    useGetFlightTicketsMutation,
+    useBookedFlightMutation,
+    useBookedUserFlightTicketsQuery
+} = flightApi;

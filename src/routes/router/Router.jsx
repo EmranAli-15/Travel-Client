@@ -20,6 +20,7 @@ import ErrorPage from '../../pages/shared/errorPage/ErrorPage';
 import UserHome from '../../pages/dashboard/user/UserHome';
 import Common from '../../pages/dashboard/Common';
 import AdminHome from '../../pages/dashboard/admin/AdminHome';
+import BookedFlightTickets from '../../pages/dashboard/user/BookedFlightTickets';
 
 const router = createBrowserRouter([
     {
@@ -84,6 +85,15 @@ const router = createBrowserRouter([
                 path: "/dashboard/userHome",
                 element: <UserHome></UserHome>
             },
+            {
+                path: "/dashboard/bookedFlightTickets",
+                element: <BookedFlightTickets></BookedFlightTickets>
+            },
+
+
+
+
+            // admin sections
             {
                 path: "/dashboard/adminHome",
                 element: <AdminHome></AdminHome>
