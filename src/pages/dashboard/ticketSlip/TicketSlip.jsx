@@ -3,14 +3,15 @@ import './TicketSlip.css'
 import { FaMapMarkerAlt, FaPlaneDeparture } from 'react-icons/fa';
 import QRCode from "react-qr-code";
 
-import ticketSlip from '../../../assets/dashboard/ticketSlip-bg.png'
+const TicketSlip = ({ data }) => {
 
-const TicketSlip = () => {
+    const { name, ticket } = data || {};
+    const { from, to } = ticket || {};
 
     return (
-        <div className='my-[500px]'>
+        <div>
             <div>
-                <div className='overflow-x-auto'>
+                <div>
                     <div className='flex items-center gap-x-3 w-[650px] text-white py-4 px-5 bg-[#1ab79d]'>
                         <FaPlaneDeparture size={25}></FaPlaneDeparture>
                         <h1 className='text-2xl font-bold'>TRAVEL</h1>
@@ -19,7 +20,7 @@ const TicketSlip = () => {
                         <div className='flex items-center justify-between'>
                             <div>
                                 <h1 className='text-2xl ticketSlipFont'>Name</h1>
-                                <h1 className='ticketSlipUser'>Emran</h1>
+                                <h1 className='ticketSlipUser'>{name}</h1>
                             </div>
                             <div className='flex items-center gap-x-10'>
                                 <div>
@@ -40,12 +41,12 @@ const TicketSlip = () => {
                         <div className='flex items-center gap-x-16 my-5'>
                             <div>
                                 <h1 className='text-2xl ticketSlipFont'>From</h1>
-                                <h1 className='ticketSlipUser'>Dhaka</h1>
+                                <h1 className='ticketSlipUser'>{from}</h1>
                             </div>
                             <div>
                                 <h1 className='text-2xl ticketSlipFont'>To</h1>
                                 <h1 className='ticketSlipUser flex items-center'>
-                                    Cox's Bazar
+                                    {to}
                                     <FaMapMarkerAlt size={15} className='text-red-500'></FaMapMarkerAlt>
                                 </h1>
                             </div>
